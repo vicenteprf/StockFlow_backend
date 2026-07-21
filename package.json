@@ -1,21 +1,21 @@
 {
-  "name": "StockFlow_backend",
-  "type": "module",
-  "scripts": {
-    "dev": "tsx --watch --env-file=.env ./src/server.ts"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.5.0",
-    "@types/express": "^5.0.6",
-    "@types/node": "^25.9.5",
-    "@types/pg": "^8.20.0",
-    "lefthook": "^2.1.9",
-    "prisma": "^7.9.0",
-    "typescript": "^6.0.3"
-  },
-  "dependencies": {
-    "@prisma/adapter-pg": "^7.9.0",
-    "express": "^5.2.1",
-    "pg": "^8.22.0"
-  }
+	"name": "StockFlow_backend",
+	"type": "module",
+	"scripts": {
+		"dev": "tsx --watch --env-file=.env ./src/server.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.5.0",
+		"@types/express": "^5.0.6",
+		"@types/node": "^25.9.5",
+		"@types/pg": "^8.20.0",
+		"lefthook": "^2.1.9",
+		"prisma": "^7.9.0",
+		"typescript": "^6.0.3"
+	},
+	"dependencies": {
+		"@prisma/adapter-pg": "^7.9.0",
+		"express": "^5.2.1",
+		"pg": "^8.22.0"
+	}
 }
