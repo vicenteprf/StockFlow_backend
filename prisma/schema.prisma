@@ -11,3 +11,53 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Usuario {
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  password String
+  criado DateTime @default(now())
+  atualizado DateTime @updatedAt
+
+  movimentacoes MovimentacaoEstoque[]
+}
+
+model Categoria {
+  id Int @id @default(autoincrement())
+  nome String @unique
+
+  produtos Produto[]
+}
+
+model Produto {
+  id Int @id @default(autoincrement())
+  nome String
+  descricao String?
+  preco Decimal
+  quantidade Int
+
+  categoriaId Int
+  categoria Categoria @relation(fields: [categoriaId], references: [id])
+
+  criado DateTime @default(now())
+  atualizado DateTime @updatedAt
+
+  movimentacoes MovimentacaoEstoque[]
+}
+
+enum TipoMovimentacao {
+  ENTRADA
+  SAIDA
+}
+
+model MovimentacaoEstoque {
+  id Int @id @default(autoincrement())
+  produtoId Int
+  produto Produto @relation(fields: [produtoId], references: [id])
+  quantidade Int
+  tipo TipoMovimentacao
+  usuarioId Int
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  criado DateTime @default(now())
+}
