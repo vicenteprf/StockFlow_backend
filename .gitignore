@@ -5,3 +5,4 @@ thumbs.db
 node_modules
 
 .env
+/src/generated/prisma
