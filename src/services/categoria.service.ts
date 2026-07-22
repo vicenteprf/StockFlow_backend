@@ -1,4 +1,5 @@
 import { prisma } from '../data/cliente.Prisma.ts';
+import { ConflictError, NotFoundError } from '../errors/index.ts';
 import type { Categoria, CreateCategoria, UpdateCategoria } from '../types.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
@@ -24,7 +25,7 @@ export async function findCategoriaById(id: number) {
 	});
 
 	if (!categoryId) {
-		throw new Error('Categoria não encontrada.');
+		throw new NotFoundError('Categoria não encontrada.');
 	}
 
 	return categoryId;
@@ -43,7 +44,7 @@ export async function insertCategoria({
 		return newCategory;
 	} catch (e) {
 		if (isPrismaKnownError(e) && e.code === 'P2002') {
-			throw new Error('Categoria já existe.');
+			throw new ConflictError('Categoria já existe.');
 		}
 
 		throw e;
@@ -67,7 +68,7 @@ export async function modifyCategoria({
 		return modifyCategoria;
 	} catch (e) {
 		if (isPrismaKnownError(e) && e.code === 'P2025') {
-			throw new Error('Categoria não encontrada.');
+			throw new NotFoundError('Categoria não encontrada.');
 		}
 
 		throw e;
@@ -83,7 +84,7 @@ export async function removeCategoria(id: number): Promise<void> {
 		});
 	} catch (e) {
 		if (isPrismaKnownError(e) && e.code === 'P2025') {
-			throw new Error('Categoria não encontrada.');
+			throw new NotFoundError('Categoria não encontrada.');
 		}
 
 		throw e;
