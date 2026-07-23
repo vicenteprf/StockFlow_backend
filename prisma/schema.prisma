@@ -36,6 +36,7 @@ model Produto {
   descricao String?
   preco Decimal
   quantidade Int
+  validade DateTime?
 
   categoriaId Int
   categoria Categoria @relation(fields: [categoriaId], references: [id])
