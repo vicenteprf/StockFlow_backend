@@ -1,5 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
-import { ConflictError, NotFoundError } from '../errors/index.ts';
+import {
+	ConflictError,
+	NotFoundError,
+	UnauthorizedError,
+} from '../errors/index.ts';
 
 export default function errorHandler(
 	error: unknown,
@@ -13,6 +17,11 @@ export default function errorHandler(
 	}
 
 	if (error instanceof ConflictError) {
+		res.status(error.statusCode).json({ message: error.message });
+		return;
+	}
+
+	if (error instanceof UnauthorizedError) {
 		res.status(error.statusCode).json({ message: error.message });
 		return;
 	}
