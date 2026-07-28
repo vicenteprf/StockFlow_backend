@@ -30,3 +30,14 @@ export type UpdateProduto = {
 	validade: Date | null;
 	categoria: number;
 };
+
+type Usuario = {
+	id: number;
+	name: string;
+	email: string;
+	password: string;
+};
+
+export type UsuarioPublico = Omit<Usuario, 'password'>;
+
+export type CreateUsuario = Omit<Usuario, 'id'>;
