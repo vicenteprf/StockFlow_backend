@@ -1,5 +1,6 @@
 import express from 'express';
 import errorHandler from './middlewares/errorHandler.ts';
+import AuthRouter from './routes/auth.routes.ts';
 import CategoriaRouter from './routes/categoria.routes.ts';
 import ProdutoRouter from './routes/produto.routes.ts';
 import UsuarioRouter from './routes/usuario.routes.ts';
@@ -13,6 +14,8 @@ app.use('/categoria', CategoriaRouter);
 app.use('/produto', ProdutoRouter);
 
 app.use('/usuario', UsuarioRouter);
+
+app.use('/auth', AuthRouter);
 
 app.use((_req, res) => {
 	res.status(404).json({
