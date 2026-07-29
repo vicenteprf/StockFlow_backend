@@ -1,6 +1,9 @@
 import type { Request, Response } from 'express';
+import type {
+	CreateCategoria,
+	UpdateCategoria,
+} from '../schemas/categoria.schema.ts';
 import * as CategoriaService from '../services/categoria.service.ts';
-import type { CreateCategoria, UpdateCategoria } from '../types.ts';
 
 export async function getAllCategoria(_req: Request, res: Response) {
 	const categoria = await CategoriaService.findAllCategoria();
@@ -29,7 +32,7 @@ export async function updateCategoria(req: Request, res: Response) {
 
 	const { nome } = req.body as UpdateCategoria;
 
-	const categoria = await CategoriaService.modifyCategoria({ id, nome });
+	const categoria = await CategoriaService.modifyCategoria(id, { nome });
 
 	res.status(200).json(categoria);
 }
