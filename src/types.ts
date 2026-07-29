@@ -5,10 +5,6 @@ export type Categoria = {
 	nome: string;
 };
 
-export type CreateCategoria = Omit<Categoria, 'id'>;
-
-export type UpdateCategoria = Categoria;
-
 export type Produto = {
 	id: number;
 	nome: string;
