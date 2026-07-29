@@ -1,3 +1,5 @@
+import type { JwtPayload } from 'jsonwebtoken';
+
 export type Categoria = {
 	id: number;
 	nome: string;
@@ -41,3 +43,9 @@ type Usuario = {
 export type UsuarioPublico = Omit<Usuario, 'password'>;
 
 export type CreateUsuario = Omit<Usuario, 'id'>;
+
+export interface TokenPayload extends JwtPayload {
+	id: number;
+	iat: number;
+	exp: number;
+}
