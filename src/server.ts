@@ -1,4 +1,5 @@
 import express from 'express';
+import authMiddleware from './middlewares/auth.middlewares.ts';
 import errorHandler from './middlewares/errorHandler.ts';
 import AuthRouter from './routes/auth.routes.ts';
 import CategoriaRouter from './routes/categoria.routes.ts';
@@ -9,9 +10,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/categoria', CategoriaRouter);
+app.use('/categoria', authMiddleware, CategoriaRouter);
 
-app.use('/produto', ProdutoRouter);
+app.use('/produto', authMiddleware, ProdutoRouter);
 
 app.use('/usuario', UsuarioRouter);
 
