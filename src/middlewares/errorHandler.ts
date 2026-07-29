@@ -11,17 +11,11 @@ export default function errorHandler(
 	res: Response,
 	_next: NextFunction,
 ) {
-	if (error instanceof NotFoundError) {
-		res.status(error.statusCode).json({ message: error.message });
-		return;
-	}
-
-	if (error instanceof ConflictError) {
-		res.status(error.statusCode).json({ message: error.message });
-		return;
-	}
-
-	if (error instanceof UnauthorizedError) {
+	if (
+		error instanceof NotFoundError ||
+		error instanceof ConflictError ||
+		error instanceof UnauthorizedError
+	) {
 		res.status(error.statusCode).json({ message: error.message });
 		return;
 	}
