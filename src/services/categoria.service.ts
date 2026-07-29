@@ -1,6 +1,10 @@
 import { prisma } from '../data/cliente.Prisma.ts';
 import { ConflictError, NotFoundError } from '../errors/index.ts';
-import type { Categoria, CreateCategoria, UpdateCategoria } from '../types.ts';
+import type {
+	CreateCategoria,
+	UpdateCategoria,
+} from '../schemas/categoria.schema.ts';
+import type { Categoria } from '../types.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
 	return (
@@ -51,10 +55,10 @@ export async function insertCategoria({
 	}
 }
 
-export async function modifyCategoria({
-	id,
-	nome,
-}: UpdateCategoria): Promise<Categoria> {
+export async function modifyCategoria(
+	id: number,
+	{ nome }: UpdateCategoria,
+): Promise<Categoria> {
 	try {
 		const modifyCategoria = await prisma.categoria.update({
 			where: {
