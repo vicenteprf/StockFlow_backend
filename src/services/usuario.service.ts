@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { prisma } from '../data/cliente.Prisma.ts';
 import { ConflictError, NotFoundError } from '../errors/index.ts';
 import type { CreateUsuario } from '../schemas/usuario.schema.ts';
-import type { UsuarioPublico } from '../types.ts';
+import type { UsuarioPublico } from '../Types/types.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
 	return (

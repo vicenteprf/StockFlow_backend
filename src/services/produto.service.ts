@@ -4,7 +4,7 @@ import type {
 	CreateProduto,
 	UpdateProduto,
 } from '../schemas/produto.schema.ts';
-import type { Produto } from '../types.ts';
+import type { Produto } from '../Types/types.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
 	return (

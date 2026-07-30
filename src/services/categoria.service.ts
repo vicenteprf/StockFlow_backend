@@ -4,7 +4,7 @@ import type {
 	CreateCategoria,
 	UpdateCategoria,
 } from '../schemas/categoria.schema.ts';
-import type { Categoria } from '../types.ts';
+import type { Categoria } from '../Types/types.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
 	return (
