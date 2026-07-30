@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import authConfig from '../config/auth.ts';
 import { UnauthorizedError } from '../errors/index.ts';
-import type { TokenPayload } from '../types.ts';
+import type { TokenPayload } from '../Types/types.ts';
 
 export default async function authMiddleware(
 	req: Request,
