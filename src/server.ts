@@ -29,4 +29,9 @@ app.use((_req, res) => {
 
 app.use(errorHandler);
 
-app.listen(Number(process.env.PORT));
+if (process.env.NODE_ENV !== 'production') {
+	const PORT = Number(process.env.PORT);
+	app.listen(PORT);
+}
+
+export default app;
