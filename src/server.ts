@@ -15,7 +15,7 @@ app.use('/categoria', authMiddleware, CategoriaRouter);
 
 app.use('/produto', authMiddleware, ProdutoRouter);
 
-app.use('/usuario', authMiddleware, UsuarioRouter);
+app.use('/usuario', UsuarioRouter);
 
 app.use('/auth', AuthRouter);
 
