@@ -15,20 +15,6 @@ export type Produto = {
 	categoria: Categoria;
 };
 
-export type CreateProduto = Omit<Produto, 'id' | 'categoria'> & {
-	categoria: number;
-};
-
-export type UpdateProduto = {
-	id: number;
-	nome: string;
-	descricao: string | null;
-	preco: number;
-	quantidade: number;
-	validade: Date | null;
-	categoria: number;
-};
-
 type Usuario = {
 	id: number;
 	name: string;
@@ -37,8 +23,6 @@ type Usuario = {
 };
 
 export type UsuarioPublico = Omit<Usuario, 'password'>;
-
-export type CreateUsuario = Omit<Usuario, 'id'>;
 
 export interface TokenPayload extends JwtPayload {
 	id: number;
