@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
+import type { CreateUsuario } from '../schemas/usuario.schema.ts';
 import * as UsuarioService from '../services/usuario.service.ts';
-import type { CreateUsuario } from '../types.ts';
 
 export async function getAllUsuario(_req: Request, res: Response) {
 	const usuario = await UsuarioService.findAllUsuario();
