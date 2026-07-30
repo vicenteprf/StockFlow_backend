@@ -1,6 +1,10 @@
 import { prisma } from '../data/cliente.Prisma.ts';
 import { NotFoundError, UnprocessableEntityError } from '../errors/index.ts';
-import type { CreateProduto, Produto, UpdateProduto } from '../types.ts';
+import type {
+	CreateProduto,
+	UpdateProduto,
+} from '../schemas/produto.schema.ts';
+import type { Produto } from '../types.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
 	return (
@@ -44,7 +48,7 @@ export async function insertProduto({
 	preco,
 	quantidade,
 	validade,
-	categoria,
+	categoriaId,
 }: CreateProduto): Promise<Produto> {
 	try {
 		const newProduto = await prisma.produto.create({
@@ -54,7 +58,7 @@ export async function insertProduto({
 				preco,
 				quantidade,
 				validade,
-				categoriaId: categoria,
+				categoriaId: categoriaId,
 			},
 			include: {
 				categoria: true,
@@ -79,15 +83,11 @@ export async function insertProduto({
 	}
 }
 
-export async function modifyProduto({
-	id,
-	nome,
-	descricao,
-	preco,
-	quantidade,
-	validade,
-	categoria,
-}: UpdateProduto): Promise<Produto> {
+export async function modifyProduto(
+	id: number,
+
+	{ nome, descricao, preco, quantidade, validade, categoriaId }: UpdateProduto,
+): Promise<Produto> {
 	try {
 		const modifyProduto = await prisma.produto.update({
 			where: {
@@ -99,7 +99,7 @@ export async function modifyProduto({
 				preco,
 				quantidade,
 				validade,
-				categoriaId: categoria,
+				categoriaId: categoriaId,
 			},
 			include: {
 				categoria: true,
