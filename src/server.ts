@@ -1,4 +1,5 @@
 import express from 'express';
+import passport from './config/passport.ts';
 import authMiddleware from './middlewares/auth.middlewares.ts';
 import errorHandler from './middlewares/errorHandler.ts';
 import AuthRouter from './routes/auth.routes.ts';
@@ -10,6 +11,8 @@ import UsuarioRouter from './routes/usuario.routes.ts';
 const app = express();
 
 app.use(express.json());
+
+app.use(passport.initialize());
 
 app.use('/categoria', authMiddleware, CategoriaRouter);
 
