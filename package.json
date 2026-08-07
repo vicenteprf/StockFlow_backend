@@ -2,7 +2,8 @@
 	"name": "StockFlow_backend",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx --watch --env-file=.env ./src/server.ts"
+		"dev": "tsx --watch --env-file=.env ./src/server.ts",
+		"build": "prisma generate"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.0",
