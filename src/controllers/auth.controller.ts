@@ -52,11 +52,9 @@ export function googleCallback(
 				},
 			);
 
-			return res.status(200).json({
-				message: 'Autenticação realizado com sucesso!',
-				token,
-				user,
-			});
+			return res.redirect(
+				`${process.env.FRONTEND_URL}/auth/callback?token=${token}`,
+			);
 		},
 	)(req, res, next);
 }
