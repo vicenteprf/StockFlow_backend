@@ -1,4 +1,6 @@
+import cors from 'cors';
 import express from 'express';
+import { corsOptions } from './config/cors.ts';
 import passport from './config/passport.ts';
 import authMiddleware from './middlewares/auth.middlewares.ts';
 import errorHandler from './middlewares/errorHandler.ts';
@@ -10,6 +12,8 @@ import UsuarioRouter from './routes/usuario.routes.ts';
 
 const app = express();
 
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 app.use(passport.initialize());
