@@ -9,6 +9,10 @@ export default async function authMiddleware(
 	_res: Response,
 	next: NextFunction,
 ) {
+	if (req.method === 'OPTIONS') {
+		return next();
+	}
+
 	const token = req.headers.authorization?.split(' ')[1];
 
 	if (!token) {
