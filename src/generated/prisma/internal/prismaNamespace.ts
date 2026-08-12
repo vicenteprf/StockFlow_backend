@@ -828,9 +828,6 @@ export const ProdutoScalarFieldEnum = {
 	id: 'id',
 	nome: 'nome',
 	descricao: 'descricao',
-	preco: 'preco',
-	quantidade: 'quantidade',
-	validade: 'validade',
 	categoriaId: 'categoriaId',
 	criado: 'criado',
 	atualizado: 'atualizado',
@@ -844,6 +841,8 @@ export const MovimentacaoEstoqueScalarFieldEnum = {
 	produtoId: 'produtoId',
 	quantidade: 'quantidade',
 	tipo: 'tipo',
+	preco: 'preco',
+	validade: 'validade',
 	usuarioId: 'usuarioId',
 	criado: 'criado',
 } as const;
@@ -925,6 +924,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
+ * Reference to a field of type 'TipoMovimentacao'
+ */
+export type EnumTipoMovimentacaoFieldRefInput<$PrismaModel> = FieldRefInputType<
+	$PrismaModel,
+	'TipoMovimentacao'
+>;
+
+/**
+ * Reference to a field of type 'TipoMovimentacao[]'
+ */
+export type ListEnumTipoMovimentacaoFieldRefInput<$PrismaModel> =
+	FieldRefInputType<$PrismaModel, 'TipoMovimentacao[]'>;
+
+/**
  * Reference to a field of type 'Decimal'
  */
 export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -939,20 +952,6 @@ export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<
 	$PrismaModel,
 	'Decimal[]'
 >;
-
-/**
- * Reference to a field of type 'TipoMovimentacao'
- */
-export type EnumTipoMovimentacaoFieldRefInput<$PrismaModel> = FieldRefInputType<
-	$PrismaModel,
-	'TipoMovimentacao'
->;
-
-/**
- * Reference to a field of type 'TipoMovimentacao[]'
- */
-export type ListEnumTipoMovimentacaoFieldRefInput<$PrismaModel> =
-	FieldRefInputType<$PrismaModel, 'TipoMovimentacao[]'>;
 
 /**
  * Reference to a field of type 'Float'

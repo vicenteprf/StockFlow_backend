@@ -45,9 +45,6 @@ export async function findProdutoById(id: number) {
 export async function insertProduto({
 	nome,
 	descricao,
-	preco,
-	quantidade,
-	validade,
 	categoriaId,
 }: CreateProduto): Promise<Produto> {
 	try {
@@ -55,9 +52,6 @@ export async function insertProduto({
 			data: {
 				nome,
 				descricao,
-				preco,
-				quantidade,
-				validade,
 				categoriaId: categoriaId,
 			},
 			include: {
@@ -69,9 +63,6 @@ export async function insertProduto({
 			id: newProduto.id,
 			nome: newProduto.nome,
 			descricao: newProduto.descricao,
-			preco: newProduto.preco.toNumber(),
-			quantidade: newProduto.quantidade,
-			validade: newProduto.validade,
 			categoria: newProduto.categoria,
 		};
 	} catch (e) {
@@ -86,7 +77,7 @@ export async function insertProduto({
 export async function modifyProduto(
 	id: number,
 
-	{ nome, descricao, preco, quantidade, validade, categoriaId }: UpdateProduto,
+	{ nome, descricao, categoriaId }: UpdateProduto,
 ): Promise<Produto> {
 	try {
 		const modifyProduto = await prisma.produto.update({
@@ -96,9 +87,6 @@ export async function modifyProduto(
 			data: {
 				nome,
 				descricao,
-				preco,
-				quantidade,
-				validade,
 				categoriaId: categoriaId,
 			},
 			include: {
@@ -110,9 +98,6 @@ export async function modifyProduto(
 			id: id,
 			nome: modifyProduto.nome,
 			descricao: modifyProduto.descricao,
-			preco: modifyProduto.preco.toNumber(),
-			quantidade: modifyProduto.quantidade,
-			validade: modifyProduto.validade,
 			categoria: modifyProduto.categoria,
 		};
 	} catch (e) {

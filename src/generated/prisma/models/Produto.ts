@@ -28,15 +28,11 @@ export type AggregateProduto = {
 
 export type ProdutoAvgAggregateOutputType = {
 	id: number | null;
-	preco: runtime.Decimal | null;
-	quantidade: number | null;
 	categoriaId: number | null;
 };
 
 export type ProdutoSumAggregateOutputType = {
 	id: number | null;
-	preco: runtime.Decimal | null;
-	quantidade: number | null;
 	categoriaId: number | null;
 };
 
@@ -44,9 +40,6 @@ export type ProdutoMinAggregateOutputType = {
 	id: number | null;
 	nome: string | null;
 	descricao: string | null;
-	preco: runtime.Decimal | null;
-	quantidade: number | null;
-	validade: Date | null;
 	categoriaId: number | null;
 	criado: Date | null;
 	atualizado: Date | null;
@@ -56,9 +49,6 @@ export type ProdutoMaxAggregateOutputType = {
 	id: number | null;
 	nome: string | null;
 	descricao: string | null;
-	preco: runtime.Decimal | null;
-	quantidade: number | null;
-	validade: Date | null;
 	categoriaId: number | null;
 	criado: Date | null;
 	atualizado: Date | null;
@@ -68,9 +58,6 @@ export type ProdutoCountAggregateOutputType = {
 	id: number;
 	nome: number;
 	descricao: number;
-	preco: number;
-	quantidade: number;
-	validade: number;
 	categoriaId: number;
 	criado: number;
 	atualizado: number;
@@ -79,15 +66,11 @@ export type ProdutoCountAggregateOutputType = {
 
 export type ProdutoAvgAggregateInputType = {
 	id?: true;
-	preco?: true;
-	quantidade?: true;
 	categoriaId?: true;
 };
 
 export type ProdutoSumAggregateInputType = {
 	id?: true;
-	preco?: true;
-	quantidade?: true;
 	categoriaId?: true;
 };
 
@@ -95,9 +78,6 @@ export type ProdutoMinAggregateInputType = {
 	id?: true;
 	nome?: true;
 	descricao?: true;
-	preco?: true;
-	quantidade?: true;
-	validade?: true;
 	categoriaId?: true;
 	criado?: true;
 	atualizado?: true;
@@ -107,9 +87,6 @@ export type ProdutoMaxAggregateInputType = {
 	id?: true;
 	nome?: true;
 	descricao?: true;
-	preco?: true;
-	quantidade?: true;
-	validade?: true;
 	categoriaId?: true;
 	criado?: true;
 	atualizado?: true;
@@ -119,9 +96,6 @@ export type ProdutoCountAggregateInputType = {
 	id?: true;
 	nome?: true;
 	descricao?: true;
-	preco?: true;
-	quantidade?: true;
-	validade?: true;
 	categoriaId?: true;
 	criado?: true;
 	atualizado?: true;
@@ -225,9 +199,6 @@ export type ProdutoGroupByOutputType = {
 	id: number;
 	nome: string;
 	descricao: string | null;
-	preco: runtime.Decimal;
-	quantidade: number;
-	validade: Date | null;
 	categoriaId: number;
 	criado: Date;
 	atualizado: Date;
@@ -258,14 +229,6 @@ export type ProdutoWhereInput = {
 	id?: Prisma.IntFilter<'Produto'> | number;
 	nome?: Prisma.StringFilter<'Produto'> | string;
 	descricao?: Prisma.StringNullableFilter<'Produto'> | string | null;
-	preco?:
-		| Prisma.DecimalFilter<'Produto'>
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFilter<'Produto'> | number;
-	validade?: Prisma.DateTimeNullableFilter<'Produto'> | Date | string | null;
 	categoriaId?: Prisma.IntFilter<'Produto'> | number;
 	criado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
 	atualizado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
@@ -280,9 +243,6 @@ export type ProdutoOrderByWithRelationInput = {
 	id?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrderInput | Prisma.SortOrder;
-	preco?: Prisma.SortOrder;
-	quantidade?: Prisma.SortOrder;
-	validade?: Prisma.SortOrderInput | Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -298,14 +258,6 @@ export type ProdutoWhereUniqueInput = Prisma.AtLeast<
 		NOT?: Prisma.ProdutoWhereInput | Prisma.ProdutoWhereInput[];
 		nome?: Prisma.StringFilter<'Produto'> | string;
 		descricao?: Prisma.StringNullableFilter<'Produto'> | string | null;
-		preco?:
-			| Prisma.DecimalFilter<'Produto'>
-			| runtime.Decimal
-			| runtime.DecimalJsLike
-			| number
-			| string;
-		quantidade?: Prisma.IntFilter<'Produto'> | number;
-		validade?: Prisma.DateTimeNullableFilter<'Produto'> | Date | string | null;
 		categoriaId?: Prisma.IntFilter<'Produto'> | number;
 		criado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
 		atualizado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
@@ -322,9 +274,6 @@ export type ProdutoOrderByWithAggregationInput = {
 	id?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrderInput | Prisma.SortOrder;
-	preco?: Prisma.SortOrder;
-	quantidade?: Prisma.SortOrder;
-	validade?: Prisma.SortOrderInput | Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -349,18 +298,6 @@ export type ProdutoScalarWhereWithAggregatesInput = {
 		| Prisma.StringNullableWithAggregatesFilter<'Produto'>
 		| string
 		| null;
-	preco?:
-		| Prisma.DecimalWithAggregatesFilter<'Produto'>
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntWithAggregatesFilter<'Produto'> | number;
-	validade?:
-		| Prisma.DateTimeNullableWithAggregatesFilter<'Produto'>
-		| Date
-		| string
-		| null;
 	categoriaId?: Prisma.IntWithAggregatesFilter<'Produto'> | number;
 	criado?: Prisma.DateTimeWithAggregatesFilter<'Produto'> | Date | string;
 	atualizado?: Prisma.DateTimeWithAggregatesFilter<'Produto'> | Date | string;
@@ -369,9 +306,6 @@ export type ProdutoScalarWhereWithAggregatesInput = {
 export type ProdutoCreateInput = {
 	nome: string;
 	descricao?: string | null;
-	preco: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	quantidade: number;
-	validade?: Date | string | null;
 	criado?: Date | string;
 	atualizado?: Date | string;
 	categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput;
@@ -382,9 +316,6 @@ export type ProdutoUncheckedCreateInput = {
 	id?: number;
 	nome: string;
 	descricao?: string | null;
-	preco: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	quantidade: number;
-	validade?: Date | string | null;
 	categoriaId: number;
 	criado?: Date | string;
 	atualizado?: Date | string;
@@ -394,18 +325,6 @@ export type ProdutoUncheckedCreateInput = {
 export type ProdutoUpdateInput = {
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput;
@@ -416,18 +335,6 @@ export type ProdutoUncheckedUpdateInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	categoriaId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -438,9 +345,6 @@ export type ProdutoCreateManyInput = {
 	id?: number;
 	nome: string;
 	descricao?: string | null;
-	preco: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	quantidade: number;
-	validade?: Date | string | null;
 	categoriaId: number;
 	criado?: Date | string;
 	atualizado?: Date | string;
@@ -449,18 +353,6 @@ export type ProdutoCreateManyInput = {
 export type ProdutoUpdateManyMutationInput = {
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -469,18 +361,6 @@ export type ProdutoUncheckedUpdateManyInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	categoriaId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -500,9 +380,6 @@ export type ProdutoCountOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrder;
-	preco?: Prisma.SortOrder;
-	quantidade?: Prisma.SortOrder;
-	validade?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -510,8 +387,6 @@ export type ProdutoCountOrderByAggregateInput = {
 
 export type ProdutoAvgOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
-	preco?: Prisma.SortOrder;
-	quantidade?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 };
 
@@ -519,9 +394,6 @@ export type ProdutoMaxOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrder;
-	preco?: Prisma.SortOrder;
-	quantidade?: Prisma.SortOrder;
-	validade?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -531,9 +403,6 @@ export type ProdutoMinOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrder;
-	preco?: Prisma.SortOrder;
-	quantidade?: Prisma.SortOrder;
-	validade?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -541,8 +410,6 @@ export type ProdutoMinOrderByAggregateInput = {
 
 export type ProdutoSumOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
-	preco?: Prisma.SortOrder;
-	quantidade?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 };
 
@@ -645,18 +512,6 @@ export type ProdutoUncheckedUpdateManyWithoutCategoriaNestedInput = {
 		| Prisma.ProdutoScalarWhereInput[];
 };
 
-export type DecimalFieldUpdateOperationsInput = {
-	set?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	increment?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	divide?: runtime.Decimal | runtime.DecimalJsLike | number | string;
-};
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-	set?: Date | string | null;
-};
-
 export type ProdutoCreateNestedOneWithoutMovimentacoesInput = {
 	create?: Prisma.XOR<
 		Prisma.ProdutoCreateWithoutMovimentacoesInput,
@@ -686,9 +541,6 @@ export type ProdutoUpdateOneRequiredWithoutMovimentacoesNestedInput = {
 export type ProdutoCreateWithoutCategoriaInput = {
 	nome: string;
 	descricao?: string | null;
-	preco: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	quantidade: number;
-	validade?: Date | string | null;
 	criado?: Date | string;
 	atualizado?: Date | string;
 	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutProdutoInput;
@@ -698,9 +550,6 @@ export type ProdutoUncheckedCreateWithoutCategoriaInput = {
 	id?: number;
 	nome: string;
 	descricao?: string | null;
-	preco: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	quantidade: number;
-	validade?: Date | string | null;
 	criado?: Date | string;
 	atualizado?: Date | string;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutProdutoInput;
@@ -756,14 +605,6 @@ export type ProdutoScalarWhereInput = {
 	id?: Prisma.IntFilter<'Produto'> | number;
 	nome?: Prisma.StringFilter<'Produto'> | string;
 	descricao?: Prisma.StringNullableFilter<'Produto'> | string | null;
-	preco?:
-		| Prisma.DecimalFilter<'Produto'>
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFilter<'Produto'> | number;
-	validade?: Prisma.DateTimeNullableFilter<'Produto'> | Date | string | null;
 	categoriaId?: Prisma.IntFilter<'Produto'> | number;
 	criado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
 	atualizado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
@@ -772,9 +613,6 @@ export type ProdutoScalarWhereInput = {
 export type ProdutoCreateWithoutMovimentacoesInput = {
 	nome: string;
 	descricao?: string | null;
-	preco: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	quantidade: number;
-	validade?: Date | string | null;
 	criado?: Date | string;
 	atualizado?: Date | string;
 	categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput;
@@ -784,9 +622,6 @@ export type ProdutoUncheckedCreateWithoutMovimentacoesInput = {
 	id?: number;
 	nome: string;
 	descricao?: string | null;
-	preco: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	quantidade: number;
-	validade?: Date | string | null;
 	categoriaId: number;
 	criado?: Date | string;
 	atualizado?: Date | string;
@@ -823,18 +658,6 @@ export type ProdutoUpdateToOneWithWhereWithoutMovimentacoesInput = {
 export type ProdutoUpdateWithoutMovimentacoesInput = {
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput;
@@ -844,18 +667,6 @@ export type ProdutoUncheckedUpdateWithoutMovimentacoesInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	categoriaId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -865,9 +676,6 @@ export type ProdutoCreateManyCategoriaInput = {
 	id?: number;
 	nome: string;
 	descricao?: string | null;
-	preco: runtime.Decimal | runtime.DecimalJsLike | number | string;
-	quantidade: number;
-	validade?: Date | string | null;
 	criado?: Date | string;
 	atualizado?: Date | string;
 };
@@ -875,18 +683,6 @@ export type ProdutoCreateManyCategoriaInput = {
 export type ProdutoUpdateWithoutCategoriaInput = {
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutProdutoNestedInput;
@@ -896,18 +692,6 @@ export type ProdutoUncheckedUpdateWithoutCategoriaInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutProdutoNestedInput;
@@ -917,18 +701,6 @@ export type ProdutoUncheckedUpdateManyWithoutCategoriaInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-	preco?:
-		| Prisma.DecimalFieldUpdateOperationsInput
-		| runtime.Decimal
-		| runtime.DecimalJsLike
-		| number
-		| string;
-	quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
-	validade?:
-		| Prisma.NullableDateTimeFieldUpdateOperationsInput
-		| Date
-		| string
-		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -979,9 +751,6 @@ export type ProdutoSelect<
 		id?: boolean;
 		nome?: boolean;
 		descricao?: boolean;
-		preco?: boolean;
-		quantidade?: boolean;
-		validade?: boolean;
 		categoriaId?: boolean;
 		criado?: boolean;
 		atualizado?: boolean;
@@ -1000,9 +769,6 @@ export type ProdutoSelectCreateManyAndReturn<
 		id?: boolean;
 		nome?: boolean;
 		descricao?: boolean;
-		preco?: boolean;
-		quantidade?: boolean;
-		validade?: boolean;
 		categoriaId?: boolean;
 		criado?: boolean;
 		atualizado?: boolean;
@@ -1019,9 +785,6 @@ export type ProdutoSelectUpdateManyAndReturn<
 		id?: boolean;
 		nome?: boolean;
 		descricao?: boolean;
-		preco?: boolean;
-		quantidade?: boolean;
-		validade?: boolean;
 		categoriaId?: boolean;
 		criado?: boolean;
 		atualizado?: boolean;
@@ -1034,9 +797,6 @@ export type ProdutoSelectScalar = {
 	id?: boolean;
 	nome?: boolean;
 	descricao?: boolean;
-	preco?: boolean;
-	quantidade?: boolean;
-	validade?: boolean;
 	categoriaId?: boolean;
 	criado?: boolean;
 	atualizado?: boolean;
@@ -1046,15 +806,7 @@ export type ProdutoOmit<
 	ExtArgs extends
 		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-	| 'id'
-	| 'nome'
-	| 'descricao'
-	| 'preco'
-	| 'quantidade'
-	| 'validade'
-	| 'categoriaId'
-	| 'criado'
-	| 'atualizado',
+	'id' | 'nome' | 'descricao' | 'categoriaId' | 'criado' | 'atualizado',
 	ExtArgs['result']['produto']
 >;
 export type ProdutoInclude<
@@ -1092,9 +844,6 @@ export type $ProdutoPayload<
 			id: number;
 			nome: string;
 			descricao: string | null;
-			preco: runtime.Decimal;
-			quantidade: number;
-			validade: Date | null;
 			categoriaId: number;
 			criado: Date;
 			atualizado: Date;
@@ -1718,9 +1467,6 @@ export interface ProdutoFieldRefs {
 	readonly id: Prisma.FieldRef<'Produto', 'Int'>;
 	readonly nome: Prisma.FieldRef<'Produto', 'String'>;
 	readonly descricao: Prisma.FieldRef<'Produto', 'String'>;
-	readonly preco: Prisma.FieldRef<'Produto', 'Decimal'>;
-	readonly quantidade: Prisma.FieldRef<'Produto', 'Int'>;
-	readonly validade: Prisma.FieldRef<'Produto', 'DateTime'>;
 	readonly categoriaId: Prisma.FieldRef<'Produto', 'Int'>;
 	readonly criado: Prisma.FieldRef<'Produto', 'DateTime'>;
 	readonly atualizado: Prisma.FieldRef<'Produto', 'DateTime'>;

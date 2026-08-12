@@ -102,9 +102,6 @@ export const ProdutoScalarFieldEnum = {
 	id: 'id',
 	nome: 'nome',
 	descricao: 'descricao',
-	preco: 'preco',
-	quantidade: 'quantidade',
-	validade: 'validade',
 	categoriaId: 'categoriaId',
 	criado: 'criado',
 	atualizado: 'atualizado',
@@ -118,6 +115,8 @@ export const MovimentacaoEstoqueScalarFieldEnum = {
 	produtoId: 'produtoId',
 	quantidade: 'quantidade',
 	tipo: 'tipo',
+	preco: 'preco',
+	validade: 'validade',
 	usuarioId: 'usuarioId',
 	criado: 'criado',
 } as const;

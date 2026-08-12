@@ -9,9 +9,6 @@ export type Produto = {
 	id: number;
 	nome: string;
 	descricao: string | null;
-	preco: number;
-	quantidade: number;
-	validade: Date | null;
 	categoria: Categoria;
 };
 

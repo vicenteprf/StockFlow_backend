@@ -30,6 +30,7 @@ export type MovimentacaoEstoqueAvgAggregateOutputType = {
 	id: number | null;
 	produtoId: number | null;
 	quantidade: number | null;
+	preco: runtime.Decimal | null;
 	usuarioId: number | null;
 };
 
@@ -37,6 +38,7 @@ export type MovimentacaoEstoqueSumAggregateOutputType = {
 	id: number | null;
 	produtoId: number | null;
 	quantidade: number | null;
+	preco: runtime.Decimal | null;
 	usuarioId: number | null;
 };
 
@@ -45,6 +47,8 @@ export type MovimentacaoEstoqueMinAggregateOutputType = {
 	produtoId: number | null;
 	quantidade: number | null;
 	tipo: $Enums.TipoMovimentacao | null;
+	preco: runtime.Decimal | null;
+	validade: Date | null;
 	usuarioId: number | null;
 	criado: Date | null;
 };
@@ -54,6 +58,8 @@ export type MovimentacaoEstoqueMaxAggregateOutputType = {
 	produtoId: number | null;
 	quantidade: number | null;
 	tipo: $Enums.TipoMovimentacao | null;
+	preco: runtime.Decimal | null;
+	validade: Date | null;
 	usuarioId: number | null;
 	criado: Date | null;
 };
@@ -63,6 +69,8 @@ export type MovimentacaoEstoqueCountAggregateOutputType = {
 	produtoId: number;
 	quantidade: number;
 	tipo: number;
+	preco: number;
+	validade: number;
 	usuarioId: number;
 	criado: number;
 	_all: number;
@@ -72,6 +80,7 @@ export type MovimentacaoEstoqueAvgAggregateInputType = {
 	id?: true;
 	produtoId?: true;
 	quantidade?: true;
+	preco?: true;
 	usuarioId?: true;
 };
 
@@ -79,6 +88,7 @@ export type MovimentacaoEstoqueSumAggregateInputType = {
 	id?: true;
 	produtoId?: true;
 	quantidade?: true;
+	preco?: true;
 	usuarioId?: true;
 };
 
@@ -87,6 +97,8 @@ export type MovimentacaoEstoqueMinAggregateInputType = {
 	produtoId?: true;
 	quantidade?: true;
 	tipo?: true;
+	preco?: true;
+	validade?: true;
 	usuarioId?: true;
 	criado?: true;
 };
@@ -96,6 +108,8 @@ export type MovimentacaoEstoqueMaxAggregateInputType = {
 	produtoId?: true;
 	quantidade?: true;
 	tipo?: true;
+	preco?: true;
+	validade?: true;
 	usuarioId?: true;
 	criado?: true;
 };
@@ -105,6 +119,8 @@ export type MovimentacaoEstoqueCountAggregateInputType = {
 	produtoId?: true;
 	quantidade?: true;
 	tipo?: true;
+	preco?: true;
+	validade?: true;
 	usuarioId?: true;
 	criado?: true;
 	_all?: true;
@@ -214,6 +230,8 @@ export type MovimentacaoEstoqueGroupByOutputType = {
 	produtoId: number;
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco: runtime.Decimal | null;
+	validade: Date | null;
 	usuarioId: number;
 	criado: Date;
 	_count: MovimentacaoEstoqueCountAggregateOutputType | null;
@@ -252,6 +270,18 @@ export type MovimentacaoEstoqueWhereInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFilter<'MovimentacaoEstoque'>
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.DecimalNullableFilter<'MovimentacaoEstoque'>
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.DateTimeNullableFilter<'MovimentacaoEstoque'>
+		| Date
+		| string
+		| null;
 	usuarioId?: Prisma.IntFilter<'MovimentacaoEstoque'> | number;
 	criado?: Prisma.DateTimeFilter<'MovimentacaoEstoque'> | Date | string;
 	produto?: Prisma.XOR<
@@ -269,6 +299,8 @@ export type MovimentacaoEstoqueOrderByWithRelationInput = {
 	produtoId?: Prisma.SortOrder;
 	quantidade?: Prisma.SortOrder;
 	tipo?: Prisma.SortOrder;
+	preco?: Prisma.SortOrderInput | Prisma.SortOrder;
+	validade?: Prisma.SortOrderInput | Prisma.SortOrder;
 	usuarioId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	produto?: Prisma.ProdutoOrderByWithRelationInput;
@@ -290,6 +322,18 @@ export type MovimentacaoEstoqueWhereUniqueInput = Prisma.AtLeast<
 		tipo?:
 			| Prisma.EnumTipoMovimentacaoFilter<'MovimentacaoEstoque'>
 			| $Enums.TipoMovimentacao;
+		preco?:
+			| Prisma.DecimalNullableFilter<'MovimentacaoEstoque'>
+			| runtime.Decimal
+			| runtime.DecimalJsLike
+			| number
+			| string
+			| null;
+		validade?:
+			| Prisma.DateTimeNullableFilter<'MovimentacaoEstoque'>
+			| Date
+			| string
+			| null;
 		usuarioId?: Prisma.IntFilter<'MovimentacaoEstoque'> | number;
 		criado?: Prisma.DateTimeFilter<'MovimentacaoEstoque'> | Date | string;
 		produto?: Prisma.XOR<
@@ -309,6 +353,8 @@ export type MovimentacaoEstoqueOrderByWithAggregationInput = {
 	produtoId?: Prisma.SortOrder;
 	quantidade?: Prisma.SortOrder;
 	tipo?: Prisma.SortOrder;
+	preco?: Prisma.SortOrderInput | Prisma.SortOrder;
+	validade?: Prisma.SortOrderInput | Prisma.SortOrder;
 	usuarioId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	_count?: Prisma.MovimentacaoEstoqueCountOrderByAggregateInput;
@@ -332,6 +378,18 @@ export type MovimentacaoEstoqueScalarWhereWithAggregatesInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoWithAggregatesFilter<'MovimentacaoEstoque'>
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.DecimalNullableWithAggregatesFilter<'MovimentacaoEstoque'>
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.DateTimeNullableWithAggregatesFilter<'MovimentacaoEstoque'>
+		| Date
+		| string
+		| null;
 	usuarioId?: Prisma.IntWithAggregatesFilter<'MovimentacaoEstoque'> | number;
 	criado?:
 		| Prisma.DateTimeWithAggregatesFilter<'MovimentacaoEstoque'>
@@ -342,6 +400,8 @@ export type MovimentacaoEstoqueScalarWhereWithAggregatesInput = {
 export type MovimentacaoEstoqueCreateInput = {
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	criado?: Date | string;
 	produto: Prisma.ProdutoCreateNestedOneWithoutMovimentacoesInput;
 	usuario: Prisma.UsuarioCreateNestedOneWithoutMovimentacoesInput;
@@ -352,6 +412,8 @@ export type MovimentacaoEstoqueUncheckedCreateInput = {
 	produtoId: number;
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	usuarioId: number;
 	criado?: Date | string;
 };
@@ -361,6 +423,18 @@ export type MovimentacaoEstoqueUpdateInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	produto?: Prisma.ProdutoUpdateOneRequiredWithoutMovimentacoesNestedInput;
 	usuario?: Prisma.UsuarioUpdateOneRequiredWithoutMovimentacoesNestedInput;
@@ -373,6 +447,18 @@ export type MovimentacaoEstoqueUncheckedUpdateInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	usuarioId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -382,6 +468,8 @@ export type MovimentacaoEstoqueCreateManyInput = {
 	produtoId: number;
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	usuarioId: number;
 	criado?: Date | string;
 };
@@ -391,6 +479,18 @@ export type MovimentacaoEstoqueUpdateManyMutationInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
@@ -401,6 +501,18 @@ export type MovimentacaoEstoqueUncheckedUpdateManyInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	usuarioId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -420,6 +532,8 @@ export type MovimentacaoEstoqueCountOrderByAggregateInput = {
 	produtoId?: Prisma.SortOrder;
 	quantidade?: Prisma.SortOrder;
 	tipo?: Prisma.SortOrder;
+	preco?: Prisma.SortOrder;
+	validade?: Prisma.SortOrder;
 	usuarioId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 };
@@ -428,6 +542,7 @@ export type MovimentacaoEstoqueAvgOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
 	produtoId?: Prisma.SortOrder;
 	quantidade?: Prisma.SortOrder;
+	preco?: Prisma.SortOrder;
 	usuarioId?: Prisma.SortOrder;
 };
 
@@ -436,6 +551,8 @@ export type MovimentacaoEstoqueMaxOrderByAggregateInput = {
 	produtoId?: Prisma.SortOrder;
 	quantidade?: Prisma.SortOrder;
 	tipo?: Prisma.SortOrder;
+	preco?: Prisma.SortOrder;
+	validade?: Prisma.SortOrder;
 	usuarioId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 };
@@ -445,6 +562,8 @@ export type MovimentacaoEstoqueMinOrderByAggregateInput = {
 	produtoId?: Prisma.SortOrder;
 	quantidade?: Prisma.SortOrder;
 	tipo?: Prisma.SortOrder;
+	preco?: Prisma.SortOrder;
+	validade?: Prisma.SortOrder;
 	usuarioId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 };
@@ -453,6 +572,7 @@ export type MovimentacaoEstoqueSumOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
 	produtoId?: Prisma.SortOrder;
 	quantidade?: Prisma.SortOrder;
+	preco?: Prisma.SortOrder;
 	usuarioId?: Prisma.SortOrder;
 };
 
@@ -680,9 +800,23 @@ export type EnumTipoMovimentacaoFieldUpdateOperationsInput = {
 	set?: $Enums.TipoMovimentacao;
 };
 
+export type NullableDecimalFieldUpdateOperationsInput = {
+	set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	increment?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+	decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+	multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+	divide?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+};
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+	set?: Date | string | null;
+};
+
 export type MovimentacaoEstoqueCreateWithoutUsuarioInput = {
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	criado?: Date | string;
 	produto: Prisma.ProdutoCreateNestedOneWithoutMovimentacoesInput;
 };
@@ -692,6 +826,8 @@ export type MovimentacaoEstoqueUncheckedCreateWithoutUsuarioInput = {
 	produtoId: number;
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	criado?: Date | string;
 };
 
@@ -752,6 +888,18 @@ export type MovimentacaoEstoqueScalarWhereInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFilter<'MovimentacaoEstoque'>
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.DecimalNullableFilter<'MovimentacaoEstoque'>
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.DateTimeNullableFilter<'MovimentacaoEstoque'>
+		| Date
+		| string
+		| null;
 	usuarioId?: Prisma.IntFilter<'MovimentacaoEstoque'> | number;
 	criado?: Prisma.DateTimeFilter<'MovimentacaoEstoque'> | Date | string;
 };
@@ -759,6 +907,8 @@ export type MovimentacaoEstoqueScalarWhereInput = {
 export type MovimentacaoEstoqueCreateWithoutProdutoInput = {
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	criado?: Date | string;
 	usuario: Prisma.UsuarioCreateNestedOneWithoutMovimentacoesInput;
 };
@@ -767,6 +917,8 @@ export type MovimentacaoEstoqueUncheckedCreateWithoutProdutoInput = {
 	id?: number;
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	usuarioId: number;
 	criado?: Date | string;
 };
@@ -819,6 +971,8 @@ export type MovimentacaoEstoqueCreateManyUsuarioInput = {
 	produtoId: number;
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	criado?: Date | string;
 };
 
@@ -827,6 +981,18 @@ export type MovimentacaoEstoqueUpdateWithoutUsuarioInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	produto?: Prisma.ProdutoUpdateOneRequiredWithoutMovimentacoesNestedInput;
 };
@@ -838,6 +1004,18 @@ export type MovimentacaoEstoqueUncheckedUpdateWithoutUsuarioInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
@@ -848,6 +1026,18 @@ export type MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
@@ -855,6 +1045,8 @@ export type MovimentacaoEstoqueCreateManyProdutoInput = {
 	id?: number;
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;
+	preco?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
+	validade?: Date | string | null;
 	usuarioId: number;
 	criado?: Date | string;
 };
@@ -864,6 +1056,18 @@ export type MovimentacaoEstoqueUpdateWithoutProdutoInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	usuario?: Prisma.UsuarioUpdateOneRequiredWithoutMovimentacoesNestedInput;
 };
@@ -874,6 +1078,18 @@ export type MovimentacaoEstoqueUncheckedUpdateWithoutProdutoInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	usuarioId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -884,6 +1100,18 @@ export type MovimentacaoEstoqueUncheckedUpdateManyWithoutProdutoInput = {
 	tipo?:
 		| Prisma.EnumTipoMovimentacaoFieldUpdateOperationsInput
 		| $Enums.TipoMovimentacao;
+	preco?:
+		| Prisma.NullableDecimalFieldUpdateOperationsInput
+		| runtime.Decimal
+		| runtime.DecimalJsLike
+		| number
+		| string
+		| null;
+	validade?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	usuarioId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -897,6 +1125,8 @@ export type MovimentacaoEstoqueSelect<
 		produtoId?: boolean;
 		quantidade?: boolean;
 		tipo?: boolean;
+		preco?: boolean;
+		validade?: boolean;
 		usuarioId?: boolean;
 		criado?: boolean;
 		produto?: boolean | Prisma.ProdutoDefaultArgs<ExtArgs>;
@@ -914,6 +1144,8 @@ export type MovimentacaoEstoqueSelectCreateManyAndReturn<
 		produtoId?: boolean;
 		quantidade?: boolean;
 		tipo?: boolean;
+		preco?: boolean;
+		validade?: boolean;
 		usuarioId?: boolean;
 		criado?: boolean;
 		produto?: boolean | Prisma.ProdutoDefaultArgs<ExtArgs>;
@@ -931,6 +1163,8 @@ export type MovimentacaoEstoqueSelectUpdateManyAndReturn<
 		produtoId?: boolean;
 		quantidade?: boolean;
 		tipo?: boolean;
+		preco?: boolean;
+		validade?: boolean;
 		usuarioId?: boolean;
 		criado?: boolean;
 		produto?: boolean | Prisma.ProdutoDefaultArgs<ExtArgs>;
@@ -944,6 +1178,8 @@ export type MovimentacaoEstoqueSelectScalar = {
 	produtoId?: boolean;
 	quantidade?: boolean;
 	tipo?: boolean;
+	preco?: boolean;
+	validade?: boolean;
 	usuarioId?: boolean;
 	criado?: boolean;
 };
@@ -952,7 +1188,14 @@ export type MovimentacaoEstoqueOmit<
 	ExtArgs extends
 		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-	'id' | 'produtoId' | 'quantidade' | 'tipo' | 'usuarioId' | 'criado',
+	| 'id'
+	| 'produtoId'
+	| 'quantidade'
+	| 'tipo'
+	| 'preco'
+	| 'validade'
+	| 'usuarioId'
+	| 'criado',
 	ExtArgs['result']['movimentacaoEstoque']
 >;
 export type MovimentacaoEstoqueInclude<
@@ -992,6 +1235,8 @@ export type $MovimentacaoEstoquePayload<
 			produtoId: number;
 			quantidade: number;
 			tipo: $Enums.TipoMovimentacao;
+			preco: runtime.Decimal | null;
+			validade: Date | null;
 			usuarioId: number;
 			criado: Date;
 		},
@@ -1640,6 +1885,8 @@ export interface MovimentacaoEstoqueFieldRefs {
 	readonly produtoId: Prisma.FieldRef<'MovimentacaoEstoque', 'Int'>;
 	readonly quantidade: Prisma.FieldRef<'MovimentacaoEstoque', 'Int'>;
 	readonly tipo: Prisma.FieldRef<'MovimentacaoEstoque', 'TipoMovimentacao'>;
+	readonly preco: Prisma.FieldRef<'MovimentacaoEstoque', 'Decimal'>;
+	readonly validade: Prisma.FieldRef<'MovimentacaoEstoque', 'DateTime'>;
 	readonly usuarioId: Prisma.FieldRef<'MovimentacaoEstoque', 'Int'>;
 	readonly criado: Prisma.FieldRef<'MovimentacaoEstoque', 'DateTime'>;
 }

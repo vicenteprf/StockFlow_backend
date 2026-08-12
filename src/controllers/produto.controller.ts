@@ -20,15 +20,12 @@ export async function getProdutoById(req: Request, res: Response) {
 }
 
 export async function createProduto(req: Request, res: Response) {
-	const { nome, descricao, preco, quantidade, validade, categoriaId } =
-		req.body as CreateProduto;
+	const { nome, descricao, categoriaId } = req.body as CreateProduto;
 
 	const produto = await ProdutoService.insertProduto({
 		nome,
 		descricao,
-		preco,
-		quantidade,
-		validade,
+
 		categoriaId,
 	});
 
@@ -38,15 +35,11 @@ export async function createProduto(req: Request, res: Response) {
 export async function updadeProduto(req: Request, res: Response) {
 	const id = Number(req.params.id);
 
-	const { nome, descricao, preco, quantidade, validade, categoriaId } =
-		req.body as UpdateProduto;
+	const { nome, descricao, categoriaId } = req.body as UpdateProduto;
 
 	const produto = await ProdutoService.modifyProduto(id, {
 		nome,
 		descricao,
-		preco,
-		quantidade,
-		validade,
 		categoriaId,
 	});
 
