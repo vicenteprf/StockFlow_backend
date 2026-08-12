@@ -11,6 +11,8 @@ export async function criarMovimentacaoService({
 	usuarioId,
 	tipo,
 	quantidade,
+	preco,
+	validade,
 }: RegistrarMovimentacaoParams) {
 	return await prisma.$transaction(async (tx) => {
 		const produto = await tx.produto.findUnique({
@@ -21,10 +23,25 @@ export async function criarMovimentacaoService({
 			throw new NotFoundError('Produto não encontrado.');
 		}
 
-		if (tipo === 'SAIDA' && produto.quantidade < quantidade) {
-			throw new UnprocessableEntityError(
-				`Estoque insuficiente: Saldo atual (${produto.quantidade} é menor que a quantidade solicitada (${quantidade}))`,
-			);
+		if (tipo === 'SAIDA') {
+			const movimentacao = await tx.movimentacaoEstoque.findMany({
+				where: {
+					produtoId,
+				},
+				select: { tipo: true, quantidade: true },
+			});
+
+			const saldoAtual = movimentacao.reduce((acc, mov) => {
+				return mov.tipo === 'ENTRADA'
+					? acc + mov.quantidade
+					: acc - mov.quantidade;
+			}, 0);
+
+			if (saldoAtual < quantidade) {
+				throw new UnprocessableEntityError(
+					`Estoque insuficiente: saldo atual (${saldoAtual}) é menor que a quantidade solicitada (${quantidade}).`,
+				);
+			}
 		}
 
 		const movimentacao = await tx.movimentacaoEstoque.create({
@@ -33,19 +50,14 @@ export async function criarMovimentacaoService({
 				usuarioId,
 				tipo,
 				quantidade,
+				preco,
+				validade,
+			},
+			include: {
+				produto: true,
 			},
 		});
 
-		const produtoAtualizado = await tx.produto.update({
-			where: { id: produtoId },
-			data: {
-				quantidade:
-					tipo === 'ENTRADA'
-						? { increment: quantidade }
-						: { decrement: quantidade },
-			},
-		});
-
-		return { movimentacao, produtoAtualizado };
+		return movimentacao;
 	});
 }

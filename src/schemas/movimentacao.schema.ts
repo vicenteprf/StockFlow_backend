@@ -15,6 +15,13 @@ export const registrarMovimentacaoSchema = z.object({
 	tipo: z.enum(['ENTRADA', 'SAIDA'], {
 		message: 'O tipo deve ser ENTRADA ou SAIDA',
 	}),
+
+	preco: z
+		.number({ message: 'O preço deve ser um número.' })
+		.positive('O preço dever ser maior que zero.')
+		.optional(),
+
+	validade: z.coerce.date({ message: 'Data de validade inválida.' }).optional(),
 });
 
 export type RegistrarMovimentacaoBody = z.infer<
