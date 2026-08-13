@@ -22,6 +22,9 @@ export const registrarMovimentacaoSchema = z.object({
 		.optional(),
 
 	validade: z.coerce.date({ message: 'Data de validade inválida.' }).optional(),
+
+	motivo: z.string().optional(),
+	observacao: z.string().optional(),
 });
 
 export type RegistrarMovimentacaoBody = z.infer<

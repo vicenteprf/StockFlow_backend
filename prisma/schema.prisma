@@ -59,6 +59,8 @@ model MovimentacaoEstoque {
   tipo TipoMovimentacao
   preco Decimal?
   validade DateTime?
+  motivo String?
+  observacao String?
   usuarioId Int
   usuario Usuario @relation(fields: [usuarioId], references: [id])
   criado DateTime @default(now())

@@ -13,6 +13,8 @@ export async function criarMovimentacaoService({
 	quantidade,
 	preco,
 	validade,
+	motivo,
+	observacao,
 }: RegistrarMovimentacaoParams) {
 	return await prisma.$transaction(async (tx) => {
 		const produto = await tx.produto.findUnique({
@@ -52,6 +54,8 @@ export async function criarMovimentacaoService({
 				quantidade,
 				preco,
 				validade,
+				motivo,
+				observacao,
 			},
 			include: {
 				produto: true,
