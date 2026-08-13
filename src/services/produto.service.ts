@@ -19,10 +19,34 @@ export async function findAllProdutos() {
 	const allProdutos = await prisma.produto.findMany({
 		include: {
 			categoria: true,
+			movimentacoes: {
+				select: {
+					tipo: true,
+					quantidade: true,
+				},
+			},
 		},
 	});
 
-	return allProdutos;
+	return allProdutos.map((produto) => {
+		const quantidadeEstoque = produto.movimentacoes.reduce((acc, mov) => {
+			if (mov.tipo === 'ENTRADA') {
+				return acc + mov.quantidade;
+			}
+			if (mov.tipo === 'SAIDA') {
+				return acc - mov.quantidade;
+			}
+
+			return acc;
+		}, 0);
+
+		const { movimentacoes, ...restoDoProduto } = produto;
+
+		return {
+			...restoDoProduto,
+			quantidadeEstoque,
+		};
+	});
 }
 
 export async function findProdutoById(id: number) {
@@ -32,6 +56,12 @@ export async function findProdutoById(id: number) {
 		},
 		include: {
 			categoria: true,
+			movimentacoes: {
+				select: {
+					tipo: true,
+					quantidade: true,
+				},
+			},
 		},
 	});
 
@@ -39,7 +69,16 @@ export async function findProdutoById(id: number) {
 		throw new NotFoundError('Produto não encontrado.');
 	}
 
-	return produtoId;
+	const quantidadeEstoque = produtoId.movimentacoes.reduce((acc, mov) => {
+		return mov.tipo === 'ENTRADA' ? acc + mov.quantidade : acc - mov.quantidade;
+	}, 0);
+
+	const { movimentacoes, ...restoDoProduto } = produtoId;
+
+	return {
+		...restoDoProduto,
+		quantidadeEstoque,
+	};
 }
 
 export async function insertProduto({
