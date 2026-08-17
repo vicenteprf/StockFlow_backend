@@ -7,6 +7,7 @@ export type Categoria = {
 
 export type Produto = {
 	id: number;
+	codigo: number;
 	nome: string;
 	descricao: string | null;
 	categoria: Categoria;

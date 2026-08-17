@@ -23,8 +23,16 @@ export async function findAllProdutos() {
 				select: {
 					tipo: true,
 					quantidade: true,
+					validade: true,
+					criado: true,
+				},
+				orderBy: {
+					criado: 'desc',
 				},
 			},
+		},
+		orderBy: {
+			codigo: 'asc',
 		},
 	});
 
@@ -40,17 +48,23 @@ export async function findAllProdutos() {
 			return acc;
 		}, 0);
 
+		// Busca a validade da última movimentação do tipo ENTRADA
+		const ultimaEntrada = produto.movimentacoes.find(
+			(mov) => mov.tipo === 'ENTRADA' && mov.validade !== null,
+		);
+
 		const { movimentacoes, ...restoDoProduto } = produto;
 
 		return {
 			...restoDoProduto,
 			quantidadeEstoque,
+			validade: ultimaEntrada?.validade || null,
 		};
 	});
 }
 
 export async function findProdutoById(id: number) {
-	const produtoId = await prisma.produto.findUnique({
+	const produto = await prisma.produto.findUnique({
 		where: {
 			id,
 		},
@@ -60,24 +74,34 @@ export async function findProdutoById(id: number) {
 				select: {
 					tipo: true,
 					quantidade: true,
+					validade: true,
+					criado: true,
+				},
+				orderBy: {
+					criado: 'desc',
 				},
 			},
 		},
 	});
 
-	if (!produtoId) {
+	if (!produto) {
 		throw new NotFoundError('Produto não encontrado.');
 	}
 
-	const quantidadeEstoque = produtoId.movimentacoes.reduce((acc, mov) => {
+	const quantidadeEstoque = produto.movimentacoes.reduce((acc, mov) => {
 		return mov.tipo === 'ENTRADA' ? acc + mov.quantidade : acc - mov.quantidade;
 	}, 0);
 
-	const { movimentacoes, ...restoDoProduto } = produtoId;
+	const ultimaEntrada = produto.movimentacoes.find(
+		(mov) => mov.tipo === 'ENTRADA' && mov.validade !== null,
+	);
+
+	const { movimentacoes, ...restoDoProduto } = produto;
 
 	return {
 		...restoDoProduto,
 		quantidadeEstoque,
+		validade: ultimaEntrada?.validade || null,
 	};
 }
 
@@ -100,6 +124,7 @@ export async function insertProduto({
 
 		return {
 			id: newProduto.id,
+			codigo: newProduto.codigo,
 			nome: newProduto.nome,
 			descricao: newProduto.descricao,
 			categoria: newProduto.categoria,
@@ -115,11 +140,10 @@ export async function insertProduto({
 
 export async function modifyProduto(
 	id: number,
-
 	{ nome, descricao, categoriaId }: UpdateProduto,
 ): Promise<Produto> {
 	try {
-		const modifyProduto = await prisma.produto.update({
+		const modified = await prisma.produto.update({
 			where: {
 				id,
 			},
@@ -134,10 +158,11 @@ export async function modifyProduto(
 		});
 
 		return {
-			id: id,
-			nome: modifyProduto.nome,
-			descricao: modifyProduto.descricao,
-			categoria: modifyProduto.categoria,
+			id: modified.id,
+			codigo: modified.codigo,
+			nome: modified.nome,
+			descricao: modified.descricao,
+			categoria: modified.categoria,
 		};
 	} catch (e) {
 		if (isPrismaKnownError(e) && e.code === 'P2003') {

@@ -826,6 +826,7 @@ export type CategoriaScalarFieldEnum =
 
 export const ProdutoScalarFieldEnum = {
 	id: 'id',
+	codigo: 'codigo',
 	nome: 'nome',
 	descricao: 'descricao',
 	categoriaId: 'categoriaId',
@@ -843,6 +844,8 @@ export const MovimentacaoEstoqueScalarFieldEnum = {
 	tipo: 'tipo',
 	preco: 'preco',
 	validade: 'validade',
+	motivo: 'motivo',
+	observacao: 'observacao',
 	usuarioId: 'usuarioId',
 	criado: 'criado',
 } as const;
