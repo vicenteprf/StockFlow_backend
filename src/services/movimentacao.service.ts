@@ -65,3 +65,30 @@ export async function criarMovimentacaoService({
 		return movimentacao;
 	});
 }
+
+export async function findAllMovimentacoes(
+	usuarioId?: number,
+	nomeUsuario?: string,
+) {
+	const movimentacoes = await prisma.movimentacaoEstoque.findMany({
+		where: {
+			...(usuarioId ? { usuarioId } : {}),
+			...(nomeUsuario
+				? {
+						usuario: {
+							nome: {
+								contains: nomeUsuario,
+								mode: 'insensitive',
+							},
+						},
+					}
+				: {}),
+		},
+		include: {
+			produto: true,
+		},
+		orderBy: { criado: 'desc' },
+	});
+
+	return movimentacoes;
+}
