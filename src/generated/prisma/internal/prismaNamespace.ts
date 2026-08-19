@@ -804,7 +804,8 @@ export type TransactionIsolationLevel =
 
 export const UsuarioScalarFieldEnum = {
 	id: 'id',
-	name: 'name',
+	nome: 'nome',
+	empresa: 'empresa',
 	email: 'email',
 	password: 'password',
 	googleId: 'googleId',

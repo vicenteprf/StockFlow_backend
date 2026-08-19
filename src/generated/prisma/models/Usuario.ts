@@ -36,7 +36,8 @@ export type UsuarioSumAggregateOutputType = {
 
 export type UsuarioMinAggregateOutputType = {
 	id: number | null;
-	name: string | null;
+	nome: string | null;
+	empresa: string | null;
 	email: string | null;
 	password: string | null;
 	googleId: string | null;
@@ -47,7 +48,8 @@ export type UsuarioMinAggregateOutputType = {
 
 export type UsuarioMaxAggregateOutputType = {
 	id: number | null;
-	name: string | null;
+	nome: string | null;
+	empresa: string | null;
 	email: string | null;
 	password: string | null;
 	googleId: string | null;
@@ -58,7 +60,8 @@ export type UsuarioMaxAggregateOutputType = {
 
 export type UsuarioCountAggregateOutputType = {
 	id: number;
-	name: number;
+	nome: number;
+	empresa: number;
 	email: number;
 	password: number;
 	googleId: number;
@@ -78,7 +81,8 @@ export type UsuarioSumAggregateInputType = {
 
 export type UsuarioMinAggregateInputType = {
 	id?: true;
-	name?: true;
+	nome?: true;
+	empresa?: true;
 	email?: true;
 	password?: true;
 	googleId?: true;
@@ -89,7 +93,8 @@ export type UsuarioMinAggregateInputType = {
 
 export type UsuarioMaxAggregateInputType = {
 	id?: true;
-	name?: true;
+	nome?: true;
+	empresa?: true;
 	email?: true;
 	password?: true;
 	googleId?: true;
@@ -100,7 +105,8 @@ export type UsuarioMaxAggregateInputType = {
 
 export type UsuarioCountAggregateInputType = {
 	id?: true;
-	name?: true;
+	nome?: true;
+	empresa?: true;
 	email?: true;
 	password?: true;
 	googleId?: true;
@@ -205,7 +211,8 @@ export type UsuarioGroupByArgs<
 
 export type UsuarioGroupByOutputType = {
 	id: number;
-	name: string;
+	nome: string;
+	empresa: string | null;
 	email: string;
 	password: string | null;
 	googleId: string | null;
@@ -237,7 +244,8 @@ export type UsuarioWhereInput = {
 	OR?: Prisma.UsuarioWhereInput[];
 	NOT?: Prisma.UsuarioWhereInput | Prisma.UsuarioWhereInput[];
 	id?: Prisma.IntFilter<'Usuario'> | number;
-	name?: Prisma.StringFilter<'Usuario'> | string;
+	nome?: Prisma.StringFilter<'Usuario'> | string;
+	empresa?: Prisma.StringNullableFilter<'Usuario'> | string | null;
 	email?: Prisma.StringFilter<'Usuario'> | string;
 	password?: Prisma.StringNullableFilter<'Usuario'> | string | null;
 	googleId?: Prisma.StringNullableFilter<'Usuario'> | string | null;
@@ -249,7 +257,8 @@ export type UsuarioWhereInput = {
 
 export type UsuarioOrderByWithRelationInput = {
 	id?: Prisma.SortOrder;
-	name?: Prisma.SortOrder;
+	nome?: Prisma.SortOrder;
+	empresa?: Prisma.SortOrderInput | Prisma.SortOrder;
 	email?: Prisma.SortOrder;
 	password?: Prisma.SortOrderInput | Prisma.SortOrder;
 	googleId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -267,7 +276,8 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<
 		AND?: Prisma.UsuarioWhereInput | Prisma.UsuarioWhereInput[];
 		OR?: Prisma.UsuarioWhereInput[];
 		NOT?: Prisma.UsuarioWhereInput | Prisma.UsuarioWhereInput[];
-		name?: Prisma.StringFilter<'Usuario'> | string;
+		nome?: Prisma.StringFilter<'Usuario'> | string;
+		empresa?: Prisma.StringNullableFilter<'Usuario'> | string | null;
 		password?: Prisma.StringNullableFilter<'Usuario'> | string | null;
 		avatarUrl?: Prisma.StringNullableFilter<'Usuario'> | string | null;
 		criado?: Prisma.DateTimeFilter<'Usuario'> | Date | string;
@@ -279,7 +289,8 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<
 
 export type UsuarioOrderByWithAggregationInput = {
 	id?: Prisma.SortOrder;
-	name?: Prisma.SortOrder;
+	nome?: Prisma.SortOrder;
+	empresa?: Prisma.SortOrderInput | Prisma.SortOrder;
 	email?: Prisma.SortOrder;
 	password?: Prisma.SortOrderInput | Prisma.SortOrder;
 	googleId?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -302,7 +313,11 @@ export type UsuarioScalarWhereWithAggregatesInput = {
 		| Prisma.UsuarioScalarWhereWithAggregatesInput
 		| Prisma.UsuarioScalarWhereWithAggregatesInput[];
 	id?: Prisma.IntWithAggregatesFilter<'Usuario'> | number;
-	name?: Prisma.StringWithAggregatesFilter<'Usuario'> | string;
+	nome?: Prisma.StringWithAggregatesFilter<'Usuario'> | string;
+	empresa?:
+		| Prisma.StringNullableWithAggregatesFilter<'Usuario'>
+		| string
+		| null;
 	email?: Prisma.StringWithAggregatesFilter<'Usuario'> | string;
 	password?:
 		| Prisma.StringNullableWithAggregatesFilter<'Usuario'>
@@ -321,7 +336,8 @@ export type UsuarioScalarWhereWithAggregatesInput = {
 };
 
 export type UsuarioCreateInput = {
-	name: string;
+	nome: string;
+	empresa?: string | null;
 	email: string;
 	password?: string | null;
 	googleId?: string | null;
@@ -333,7 +349,8 @@ export type UsuarioCreateInput = {
 
 export type UsuarioUncheckedCreateInput = {
 	id?: number;
-	name: string;
+	nome: string;
+	empresa?: string | null;
 	email: string;
 	password?: string | null;
 	googleId?: string | null;
@@ -344,7 +361,8 @@ export type UsuarioUncheckedCreateInput = {
 };
 
 export type UsuarioUpdateInput = {
-	name?: Prisma.StringFieldUpdateOperationsInput | string;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	email?: Prisma.StringFieldUpdateOperationsInput | string;
 	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -356,7 +374,8 @@ export type UsuarioUpdateInput = {
 
 export type UsuarioUncheckedUpdateInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
-	name?: Prisma.StringFieldUpdateOperationsInput | string;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	email?: Prisma.StringFieldUpdateOperationsInput | string;
 	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -368,7 +387,8 @@ export type UsuarioUncheckedUpdateInput = {
 
 export type UsuarioCreateManyInput = {
 	id?: number;
-	name: string;
+	nome: string;
+	empresa?: string | null;
 	email: string;
 	password?: string | null;
 	googleId?: string | null;
@@ -378,7 +398,8 @@ export type UsuarioCreateManyInput = {
 };
 
 export type UsuarioUpdateManyMutationInput = {
-	name?: Prisma.StringFieldUpdateOperationsInput | string;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	email?: Prisma.StringFieldUpdateOperationsInput | string;
 	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -389,7 +410,8 @@ export type UsuarioUpdateManyMutationInput = {
 
 export type UsuarioUncheckedUpdateManyInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
-	name?: Prisma.StringFieldUpdateOperationsInput | string;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	email?: Prisma.StringFieldUpdateOperationsInput | string;
 	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -400,7 +422,8 @@ export type UsuarioUncheckedUpdateManyInput = {
 
 export type UsuarioCountOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
-	name?: Prisma.SortOrder;
+	nome?: Prisma.SortOrder;
+	empresa?: Prisma.SortOrder;
 	email?: Prisma.SortOrder;
 	password?: Prisma.SortOrder;
 	googleId?: Prisma.SortOrder;
@@ -415,7 +438,8 @@ export type UsuarioAvgOrderByAggregateInput = {
 
 export type UsuarioMaxOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
-	name?: Prisma.SortOrder;
+	nome?: Prisma.SortOrder;
+	empresa?: Prisma.SortOrder;
 	email?: Prisma.SortOrder;
 	password?: Prisma.SortOrder;
 	googleId?: Prisma.SortOrder;
@@ -426,7 +450,8 @@ export type UsuarioMaxOrderByAggregateInput = {
 
 export type UsuarioMinOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
-	name?: Prisma.SortOrder;
+	nome?: Prisma.SortOrder;
+	empresa?: Prisma.SortOrder;
 	email?: Prisma.SortOrder;
 	password?: Prisma.SortOrder;
 	googleId?: Prisma.SortOrder;
@@ -491,7 +516,8 @@ export type UsuarioUpdateOneRequiredWithoutMovimentacoesNestedInput = {
 };
 
 export type UsuarioCreateWithoutMovimentacoesInput = {
-	name: string;
+	nome: string;
+	empresa?: string | null;
 	email: string;
 	password?: string | null;
 	googleId?: string | null;
@@ -502,7 +528,8 @@ export type UsuarioCreateWithoutMovimentacoesInput = {
 
 export type UsuarioUncheckedCreateWithoutMovimentacoesInput = {
 	id?: number;
-	name: string;
+	nome: string;
+	empresa?: string | null;
 	email: string;
 	password?: string | null;
 	googleId?: string | null;
@@ -540,7 +567,8 @@ export type UsuarioUpdateToOneWithWhereWithoutMovimentacoesInput = {
 };
 
 export type UsuarioUpdateWithoutMovimentacoesInput = {
-	name?: Prisma.StringFieldUpdateOperationsInput | string;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	email?: Prisma.StringFieldUpdateOperationsInput | string;
 	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -551,7 +579,8 @@ export type UsuarioUpdateWithoutMovimentacoesInput = {
 
 export type UsuarioUncheckedUpdateWithoutMovimentacoesInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
-	name?: Prisma.StringFieldUpdateOperationsInput | string;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	email?: Prisma.StringFieldUpdateOperationsInput | string;
 	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -604,7 +633,8 @@ export type UsuarioSelect<
 > = runtime.Types.Extensions.GetSelect<
 	{
 		id?: boolean;
-		name?: boolean;
+		nome?: boolean;
+		empresa?: boolean;
 		email?: boolean;
 		password?: boolean;
 		googleId?: boolean;
@@ -623,7 +653,8 @@ export type UsuarioSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
 	{
 		id?: boolean;
-		name?: boolean;
+		nome?: boolean;
+		empresa?: boolean;
 		email?: boolean;
 		password?: boolean;
 		googleId?: boolean;
@@ -640,7 +671,8 @@ export type UsuarioSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
 	{
 		id?: boolean;
-		name?: boolean;
+		nome?: boolean;
+		empresa?: boolean;
 		email?: boolean;
 		password?: boolean;
 		googleId?: boolean;
@@ -653,7 +685,8 @@ export type UsuarioSelectUpdateManyAndReturn<
 
 export type UsuarioSelectScalar = {
 	id?: boolean;
-	name?: boolean;
+	nome?: boolean;
+	empresa?: boolean;
 	email?: boolean;
 	password?: boolean;
 	googleId?: boolean;
@@ -667,7 +700,8 @@ export type UsuarioOmit<
 		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
 	| 'id'
-	| 'name'
+	| 'nome'
+	| 'empresa'
 	| 'email'
 	| 'password'
 	| 'googleId'
@@ -703,7 +737,8 @@ export type $UsuarioPayload<
 	scalars: runtime.Types.Extensions.GetPayloadResult<
 		{
 			id: number;
-			name: string;
+			nome: string;
+			empresa: string | null;
 			email: string;
 			password: string | null;
 			googleId: string | null;
@@ -1314,7 +1349,8 @@ export interface Prisma__UsuarioClient<
  */
 export interface UsuarioFieldRefs {
 	readonly id: Prisma.FieldRef<'Usuario', 'Int'>;
-	readonly name: Prisma.FieldRef<'Usuario', 'String'>;
+	readonly nome: Prisma.FieldRef<'Usuario', 'String'>;
+	readonly empresa: Prisma.FieldRef<'Usuario', 'String'>;
 	readonly email: Prisma.FieldRef<'Usuario', 'String'>;
 	readonly password: Prisma.FieldRef<'Usuario', 'String'>;
 	readonly googleId: Prisma.FieldRef<'Usuario', 'String'>;
