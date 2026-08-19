@@ -17,13 +17,14 @@ export async function getUsuarioById(req: Request, res: Response) {
 }
 
 export async function createUsuario(req: Request, res: Response) {
-	const { name, email, password } = req.body as CreateUsuario;
+	const { nome, empresa, email, password } = req.body as CreateUsuario;
 
-	const usuario = await UsuarioService.insertUsuario({
-		name,
+	const dados = await UsuarioService.insertUsuario({
+		nome,
+		empresa,
 		email,
 		password,
 	});
 
-	res.status(201).json(usuario);
+	res.status(201).json(dados);
 }

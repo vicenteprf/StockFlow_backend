@@ -15,7 +15,8 @@ export type Produto = {
 
 type Usuario = {
 	id: number;
-	name: string;
+	nome: string;
+	empresa: string | null;
 	email: string;
 	password: string;
 };

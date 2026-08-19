@@ -1,4 +1,6 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import authConfig from '../config/auth.ts';
 import { prisma } from '../data/cliente.Prisma.ts';
 import { ConflictError, NotFoundError } from '../errors/index.ts';
 import type { CreateUsuario } from '../schemas/usuario.schema.ts';
@@ -43,16 +45,18 @@ export async function findUsuarioById(id: number) {
 }
 
 export async function insertUsuario({
-	name,
+	nome,
+	empresa,
 	email,
 	password,
-}: CreateUsuario): Promise<UsuarioPublico> {
+}: CreateUsuario): Promise<{ usuario: UsuarioPublico; token: string }> {
 	try {
 		const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
 		const newUsuario = await prisma.usuario.create({
 			data: {
-				name,
+				nome,
+				empresa,
 				email,
 				password: hashedPassword,
 			},
@@ -61,7 +65,14 @@ export async function insertUsuario({
 			},
 		});
 
-		return newUsuario;
+		const token = jwt.sign({ id: newUsuario.id }, authConfig.secret, {
+			expiresIn: authConfig.expiresIn,
+		});
+
+		return {
+			usuario: newUsuario,
+			token,
+		};
 	} catch (e) {
 		if (isPrismaKnownError(e) && e.code === 'P2002') {
 			throw new ConflictError('Já existe um usuário com este e-mail.');

@@ -46,7 +46,7 @@ passport.use(
 					);
 				}
 
-				const name =
+				const nome =
 					profile.displayName || profile.name?.givenName || 'Usuário';
 				const avatarUrl = profile.photos?.[0].value;
 
@@ -60,7 +60,7 @@ passport.use(
 					user = await prisma.usuario.create({
 						data: {
 							email,
-							name,
+							nome,
 							avatarUrl,
 							googleId: profile.id,
 						},
@@ -75,7 +75,7 @@ passport.use(
 				const authUsuario: GoogleAuthUser = {
 					id: user.id,
 					email: user.email,
-					name: user.name,
+					name: user.nome,
 					avatarUrl: user.avatarUrl ?? undefined,
 				};
 
