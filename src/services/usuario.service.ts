@@ -48,6 +48,7 @@ export async function insertUsuario({
 	nome,
 	empresa,
 	email,
+	role,
 	password,
 }: CreateUsuario): Promise<{ usuario: UsuarioPublico; token: string }> {
 	try {
@@ -58,6 +59,7 @@ export async function insertUsuario({
 				nome,
 				empresa,
 				email,
+				role,
 				password: hashedPassword,
 			},
 			omit: {
@@ -65,9 +67,13 @@ export async function insertUsuario({
 			},
 		});
 
-		const token = jwt.sign({ id: newUsuario.id }, authConfig.secret, {
-			expiresIn: authConfig.expiresIn,
-		});
+		const token = jwt.sign(
+			{ id: newUsuario.id, role: newUsuario.role },
+			authConfig.secret,
+			{
+				expiresIn: authConfig.expiresIn,
+			},
+		);
 
 		return {
 			usuario: newUsuario,

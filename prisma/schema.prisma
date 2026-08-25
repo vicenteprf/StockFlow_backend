@@ -12,6 +12,11 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model Usuario {
   id Int @id @default(autoincrement())
   nome String
@@ -20,6 +25,7 @@ model Usuario {
   password String?
   googleId String? @unique
   avatarUrl String?
+  role Role @default(USER)
   criado DateTime @default(now())
   atualizado DateTime @updatedAt
 

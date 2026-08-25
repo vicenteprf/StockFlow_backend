@@ -1,4 +1,5 @@
 import type { JwtPayload } from 'jsonwebtoken';
+import type { Role } from '../generated/prisma/enums.ts';
 
 export type Categoria = {
 	id: number;
@@ -18,6 +19,7 @@ type Usuario = {
 	nome: string;
 	empresa: string | null;
 	email: string;
+	role: Role;
 	password: string;
 };
 
@@ -25,6 +27,7 @@ export type UsuarioPublico = Omit<Usuario, 'password'>;
 
 export interface TokenPayload extends JwtPayload {
 	id: number;
+	role: Role;
 	iat: number;
 	exp: number;
 }

@@ -84,6 +84,7 @@ export const UsuarioScalarFieldEnum = {
 	password: 'password',
 	googleId: 'googleId',
 	avatarUrl: 'avatarUrl',
+	role: 'role',
 	criado: 'criado',
 	atualizado: 'atualizado',
 } as const;
