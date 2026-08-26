@@ -813,6 +813,7 @@ export const UsuarioScalarFieldEnum = {
 	role: 'role',
 	criado: 'criado',
 	atualizado: 'atualizado',
+	adminId: 'adminId',
 } as const;
 
 export type UsuarioScalarFieldEnum =

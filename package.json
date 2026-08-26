@@ -3,7 +3,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "tsx --watch --env-file=.env ./src/server.ts",
-		"build": "prisma generate"
+		"build": "prisma generate && tsc"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.0",
