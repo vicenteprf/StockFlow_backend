@@ -29,6 +29,10 @@ model Usuario {
   criado DateTime @default(now())
   atualizado DateTime @updatedAt
 
+  adminId Int?
+  admin Usuario? @relation("EquipeAdmin", fields: [adminId], references: [id])
+  membros Usuario[] @relation("EquipeAdmin")
+
   movimentacoes MovimentacaoEstoque[]
 }
 
