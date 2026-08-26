@@ -13,5 +13,11 @@ router.post(
 	validate(createUsuarioSchema),
 	UsuarioController.createUsuario,
 );
+router.post(
+	'/convite',
+	authMiddleware,
+	validate(createUsuarioSchema),
+	UsuarioController.convidarMembro,
+);
 
 export default router;
