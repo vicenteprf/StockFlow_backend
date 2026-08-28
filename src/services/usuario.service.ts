@@ -115,6 +115,22 @@ export async function insertUsuario({
 	}
 }
 
+export async function removeUsuario(id: number): Promise<void> {
+	try {
+		await prisma.usuario.delete({
+			where: {
+				id,
+			},
+		});
+	} catch (e) {
+		if (isPrismaKnownError(e) && e.code === 'P2025') {
+			throw new NotFoundError('Usuario não encontrado.');
+		}
+
+		throw e;
+	}
+}
+
 export async function convidarMembro({
 	nome,
 	email,

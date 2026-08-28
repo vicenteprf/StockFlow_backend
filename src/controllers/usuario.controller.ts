@@ -30,6 +30,14 @@ export async function createUsuario(req: Request, res: Response) {
 	res.status(201).json(dados);
 }
 
+export async function deleteUsuario(req: Request, res: Response) {
+	const id = Number(req.params.id);
+
+	await UsuarioService.removeUsuario(id);
+
+	res.status(204).send();
+}
+
 export async function convidarMembro(req: Request, res: Response) {
 	const novoMembro = await UsuarioService.convidarMembro({
 		...req.body,

@@ -19,5 +19,6 @@ router.post(
 	validate(createUsuarioSchema),
 	UsuarioController.convidarMembro,
 );
+router.delete('/:id', authMiddleware, UsuarioController.deleteUsuario);
 
 export default router;
