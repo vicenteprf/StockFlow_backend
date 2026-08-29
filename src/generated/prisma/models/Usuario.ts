@@ -277,6 +277,8 @@ export type UsuarioWhereInput = {
 		Prisma.UsuarioWhereInput
 	> | null;
 	membros?: Prisma.UsuarioListRelationFilter;
+	produtosCriados?: Prisma.ProdutoListRelationFilter;
+	categoriasCriadas?: Prisma.CategoriaListRelationFilter;
 	movimentacoes?: Prisma.MovimentacaoEstoqueListRelationFilter;
 };
 
@@ -294,6 +296,8 @@ export type UsuarioOrderByWithRelationInput = {
 	adminId?: Prisma.SortOrderInput | Prisma.SortOrder;
 	admin?: Prisma.UsuarioOrderByWithRelationInput;
 	membros?: Prisma.UsuarioOrderByRelationAggregateInput;
+	produtosCriados?: Prisma.ProdutoOrderByRelationAggregateInput;
+	categoriasCriadas?: Prisma.CategoriaOrderByRelationAggregateInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueOrderByRelationAggregateInput;
 };
 
@@ -318,6 +322,8 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<
 			Prisma.UsuarioWhereInput
 		> | null;
 		membros?: Prisma.UsuarioListRelationFilter;
+		produtosCriados?: Prisma.ProdutoListRelationFilter;
+		categoriasCriadas?: Prisma.CategoriaListRelationFilter;
 		movimentacoes?: Prisma.MovimentacaoEstoqueListRelationFilter;
 	},
 	'id' | 'email' | 'googleId'
@@ -387,6 +393,8 @@ export type UsuarioCreateInput = {
 	atualizado?: Date | string;
 	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
 	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
+	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutUsuarioInput;
 };
 
@@ -403,6 +411,8 @@ export type UsuarioUncheckedCreateInput = {
 	atualizado?: Date | string;
 	adminId?: number | null;
 	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
+	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutUsuarioInput;
 };
 
@@ -418,6 +428,8 @@ export type UsuarioUpdateInput = {
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
 	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
+	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutUsuarioNestedInput;
 };
 
@@ -434,6 +446,8 @@ export type UsuarioUncheckedUpdateInput = {
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
+	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioNestedInput;
 };
 
@@ -703,6 +717,58 @@ export type UsuarioUncheckedUpdateManyWithoutAdminNestedInput = {
 		| Prisma.UsuarioScalarWhereInput[];
 };
 
+export type UsuarioCreateNestedOneWithoutCategoriasCriadasInput = {
+	create?: Prisma.XOR<
+		Prisma.UsuarioCreateWithoutCategoriasCriadasInput,
+		Prisma.UsuarioUncheckedCreateWithoutCategoriasCriadasInput
+	>;
+	connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCategoriasCriadasInput;
+	connect?: Prisma.UsuarioWhereUniqueInput;
+};
+
+export type UsuarioUpdateOneRequiredWithoutCategoriasCriadasNestedInput = {
+	create?: Prisma.XOR<
+		Prisma.UsuarioCreateWithoutCategoriasCriadasInput,
+		Prisma.UsuarioUncheckedCreateWithoutCategoriasCriadasInput
+	>;
+	connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutCategoriasCriadasInput;
+	upsert?: Prisma.UsuarioUpsertWithoutCategoriasCriadasInput;
+	connect?: Prisma.UsuarioWhereUniqueInput;
+	update?: Prisma.XOR<
+		Prisma.XOR<
+			Prisma.UsuarioUpdateToOneWithWhereWithoutCategoriasCriadasInput,
+			Prisma.UsuarioUpdateWithoutCategoriasCriadasInput
+		>,
+		Prisma.UsuarioUncheckedUpdateWithoutCategoriasCriadasInput
+	>;
+};
+
+export type UsuarioCreateNestedOneWithoutProdutosCriadosInput = {
+	create?: Prisma.XOR<
+		Prisma.UsuarioCreateWithoutProdutosCriadosInput,
+		Prisma.UsuarioUncheckedCreateWithoutProdutosCriadosInput
+	>;
+	connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutProdutosCriadosInput;
+	connect?: Prisma.UsuarioWhereUniqueInput;
+};
+
+export type UsuarioUpdateOneRequiredWithoutProdutosCriadosNestedInput = {
+	create?: Prisma.XOR<
+		Prisma.UsuarioCreateWithoutProdutosCriadosInput,
+		Prisma.UsuarioUncheckedCreateWithoutProdutosCriadosInput
+	>;
+	connectOrCreate?: Prisma.UsuarioCreateOrConnectWithoutProdutosCriadosInput;
+	upsert?: Prisma.UsuarioUpsertWithoutProdutosCriadosInput;
+	connect?: Prisma.UsuarioWhereUniqueInput;
+	update?: Prisma.XOR<
+		Prisma.XOR<
+			Prisma.UsuarioUpdateToOneWithWhereWithoutProdutosCriadosInput,
+			Prisma.UsuarioUpdateWithoutProdutosCriadosInput
+		>,
+		Prisma.UsuarioUncheckedUpdateWithoutProdutosCriadosInput
+	>;
+};
+
 export type UsuarioCreateNestedOneWithoutMovimentacoesInput = {
 	create?: Prisma.XOR<
 		Prisma.UsuarioCreateWithoutMovimentacoesInput,
@@ -740,6 +806,8 @@ export type UsuarioCreateWithoutMembrosInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
+	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutUsuarioInput;
 };
 
@@ -755,6 +823,8 @@ export type UsuarioUncheckedCreateWithoutMembrosInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	adminId?: number | null;
+	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutUsuarioInput;
 };
 
@@ -777,6 +847,8 @@ export type UsuarioCreateWithoutAdminInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
+	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutUsuarioInput;
 };
 
@@ -792,6 +864,8 @@ export type UsuarioUncheckedCreateWithoutAdminInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
+	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutUsuarioInput;
 };
 
@@ -841,6 +915,8 @@ export type UsuarioUpdateWithoutMembrosInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
+	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutUsuarioNestedInput;
 };
 
@@ -856,6 +932,8 @@ export type UsuarioUncheckedUpdateWithoutMembrosInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioNestedInput;
 };
 
@@ -904,6 +982,194 @@ export type UsuarioScalarWhereInput = {
 	adminId?: Prisma.IntNullableFilter<'Usuario'> | number | null;
 };
 
+export type UsuarioCreateWithoutCategoriasCriadasInput = {
+	nome: string;
+	empresa?: string | null;
+	email: string;
+	password?: string | null;
+	googleId?: string | null;
+	avatarUrl?: string | null;
+	role?: $Enums.Role;
+	criado?: Date | string;
+	atualizado?: Date | string;
+	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
+	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
+	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutUsuarioInput;
+};
+
+export type UsuarioUncheckedCreateWithoutCategoriasCriadasInput = {
+	id?: number;
+	nome: string;
+	empresa?: string | null;
+	email: string;
+	password?: string | null;
+	googleId?: string | null;
+	avatarUrl?: string | null;
+	role?: $Enums.Role;
+	criado?: Date | string;
+	atualizado?: Date | string;
+	adminId?: number | null;
+	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
+	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutUsuarioInput;
+};
+
+export type UsuarioCreateOrConnectWithoutCategoriasCriadasInput = {
+	where: Prisma.UsuarioWhereUniqueInput;
+	create: Prisma.XOR<
+		Prisma.UsuarioCreateWithoutCategoriasCriadasInput,
+		Prisma.UsuarioUncheckedCreateWithoutCategoriasCriadasInput
+	>;
+};
+
+export type UsuarioUpsertWithoutCategoriasCriadasInput = {
+	update: Prisma.XOR<
+		Prisma.UsuarioUpdateWithoutCategoriasCriadasInput,
+		Prisma.UsuarioUncheckedUpdateWithoutCategoriasCriadasInput
+	>;
+	create: Prisma.XOR<
+		Prisma.UsuarioCreateWithoutCategoriasCriadasInput,
+		Prisma.UsuarioUncheckedCreateWithoutCategoriasCriadasInput
+	>;
+	where?: Prisma.UsuarioWhereInput;
+};
+
+export type UsuarioUpdateToOneWithWhereWithoutCategoriasCriadasInput = {
+	where?: Prisma.UsuarioWhereInput;
+	data: Prisma.XOR<
+		Prisma.UsuarioUpdateWithoutCategoriasCriadasInput,
+		Prisma.UsuarioUncheckedUpdateWithoutCategoriasCriadasInput
+	>;
+};
+
+export type UsuarioUpdateWithoutCategoriasCriadasInput = {
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	email?: Prisma.StringFieldUpdateOperationsInput | string;
+	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
+	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
+	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutUsuarioNestedInput;
+};
+
+export type UsuarioUncheckedUpdateWithoutCategoriasCriadasInput = {
+	id?: Prisma.IntFieldUpdateOperationsInput | number;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	email?: Prisma.StringFieldUpdateOperationsInput | string;
+	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
+	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioNestedInput;
+};
+
+export type UsuarioCreateWithoutProdutosCriadosInput = {
+	nome: string;
+	empresa?: string | null;
+	email: string;
+	password?: string | null;
+	googleId?: string | null;
+	avatarUrl?: string | null;
+	role?: $Enums.Role;
+	criado?: Date | string;
+	atualizado?: Date | string;
+	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
+	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaCreateNestedManyWithoutAdminInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutUsuarioInput;
+};
+
+export type UsuarioUncheckedCreateWithoutProdutosCriadosInput = {
+	id?: number;
+	nome: string;
+	empresa?: string | null;
+	email: string;
+	password?: string | null;
+	googleId?: string | null;
+	avatarUrl?: string | null;
+	role?: $Enums.Role;
+	criado?: Date | string;
+	atualizado?: Date | string;
+	adminId?: number | null;
+	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutUsuarioInput;
+};
+
+export type UsuarioCreateOrConnectWithoutProdutosCriadosInput = {
+	where: Prisma.UsuarioWhereUniqueInput;
+	create: Prisma.XOR<
+		Prisma.UsuarioCreateWithoutProdutosCriadosInput,
+		Prisma.UsuarioUncheckedCreateWithoutProdutosCriadosInput
+	>;
+};
+
+export type UsuarioUpsertWithoutProdutosCriadosInput = {
+	update: Prisma.XOR<
+		Prisma.UsuarioUpdateWithoutProdutosCriadosInput,
+		Prisma.UsuarioUncheckedUpdateWithoutProdutosCriadosInput
+	>;
+	create: Prisma.XOR<
+		Prisma.UsuarioCreateWithoutProdutosCriadosInput,
+		Prisma.UsuarioUncheckedCreateWithoutProdutosCriadosInput
+	>;
+	where?: Prisma.UsuarioWhereInput;
+};
+
+export type UsuarioUpdateToOneWithWhereWithoutProdutosCriadosInput = {
+	where?: Prisma.UsuarioWhereInput;
+	data: Prisma.XOR<
+		Prisma.UsuarioUpdateWithoutProdutosCriadosInput,
+		Prisma.UsuarioUncheckedUpdateWithoutProdutosCriadosInput
+	>;
+};
+
+export type UsuarioUpdateWithoutProdutosCriadosInput = {
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	email?: Prisma.StringFieldUpdateOperationsInput | string;
+	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
+	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUpdateManyWithoutAdminNestedInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutUsuarioNestedInput;
+};
+
+export type UsuarioUncheckedUpdateWithoutProdutosCriadosInput = {
+	id?: Prisma.IntFieldUpdateOperationsInput | number;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	empresa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	email?: Prisma.StringFieldUpdateOperationsInput | string;
+	password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
+	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioNestedInput;
+};
+
 export type UsuarioCreateWithoutMovimentacoesInput = {
 	nome: string;
 	empresa?: string | null;
@@ -916,6 +1182,8 @@ export type UsuarioCreateWithoutMovimentacoesInput = {
 	atualizado?: Date | string;
 	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
 	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
+	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaCreateNestedManyWithoutAdminInput;
 };
 
 export type UsuarioUncheckedCreateWithoutMovimentacoesInput = {
@@ -931,6 +1199,8 @@ export type UsuarioUncheckedCreateWithoutMovimentacoesInput = {
 	atualizado?: Date | string;
 	adminId?: number | null;
 	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
+	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
 };
 
 export type UsuarioCreateOrConnectWithoutMovimentacoesInput = {
@@ -973,6 +1243,8 @@ export type UsuarioUpdateWithoutMovimentacoesInput = {
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
 	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
+	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUpdateManyWithoutAdminNestedInput;
 };
 
 export type UsuarioUncheckedUpdateWithoutMovimentacoesInput = {
@@ -988,6 +1260,8 @@ export type UsuarioUncheckedUpdateWithoutMovimentacoesInput = {
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
 	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
+	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
 };
 
 export type UsuarioCreateManyAdminInput = {
@@ -1014,6 +1288,8 @@ export type UsuarioUpdateWithoutAdminInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
+	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutUsuarioNestedInput;
 };
 
@@ -1029,6 +1305,8 @@ export type UsuarioUncheckedUpdateWithoutAdminInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
+	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
+	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioNestedInput;
 };
 
@@ -1051,6 +1329,8 @@ export type UsuarioUncheckedUpdateManyWithoutAdminInput = {
 
 export type UsuarioCountOutputType = {
 	membros: number;
+	produtosCriados: number;
+	categoriasCriadas: number;
 	movimentacoes: number;
 };
 
@@ -1059,6 +1339,10 @@ export type UsuarioCountOutputTypeSelect<
 		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
 	membros?: boolean | UsuarioCountOutputTypeCountMembrosArgs;
+	produtosCriados?: boolean | UsuarioCountOutputTypeCountProdutosCriadosArgs;
+	categoriasCriadas?:
+		| boolean
+		| UsuarioCountOutputTypeCountCategoriasCriadasArgs;
 	movimentacoes?: boolean | UsuarioCountOutputTypeCountMovimentacoesArgs;
 };
 
@@ -1083,6 +1367,26 @@ export type UsuarioCountOutputTypeCountMembrosArgs<
 		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
 	where?: Prisma.UsuarioWhereInput;
+};
+
+/**
+ * UsuarioCountOutputType without action
+ */
+export type UsuarioCountOutputTypeCountProdutosCriadosArgs<
+	ExtArgs extends
+		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+	where?: Prisma.ProdutoWhereInput;
+};
+
+/**
+ * UsuarioCountOutputType without action
+ */
+export type UsuarioCountOutputTypeCountCategoriasCriadasArgs<
+	ExtArgs extends
+		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+	where?: Prisma.CategoriaWhereInput;
 };
 
 /**
@@ -1113,6 +1417,8 @@ export type UsuarioSelect<
 		adminId?: boolean;
 		admin?: boolean | Prisma.Usuario$adminArgs<ExtArgs>;
 		membros?: boolean | Prisma.Usuario$membrosArgs<ExtArgs>;
+		produtosCriados?: boolean | Prisma.Usuario$produtosCriadosArgs<ExtArgs>;
+		categoriasCriadas?: boolean | Prisma.Usuario$categoriasCriadasArgs<ExtArgs>;
 		movimentacoes?: boolean | Prisma.Usuario$movimentacoesArgs<ExtArgs>;
 		_count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>;
 	},
@@ -1198,6 +1504,8 @@ export type UsuarioInclude<
 > = {
 	admin?: boolean | Prisma.Usuario$adminArgs<ExtArgs>;
 	membros?: boolean | Prisma.Usuario$membrosArgs<ExtArgs>;
+	produtosCriados?: boolean | Prisma.Usuario$produtosCriadosArgs<ExtArgs>;
+	categoriasCriadas?: boolean | Prisma.Usuario$categoriasCriadasArgs<ExtArgs>;
 	movimentacoes?: boolean | Prisma.Usuario$movimentacoesArgs<ExtArgs>;
 	_count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>;
 };
@@ -1222,6 +1530,8 @@ export type $UsuarioPayload<
 	objects: {
 		admin: Prisma.$UsuarioPayload<ExtArgs> | null;
 		membros: Prisma.$UsuarioPayload<ExtArgs>[];
+		produtosCriados: Prisma.$ProdutoPayload<ExtArgs>[];
+		categoriasCriadas: Prisma.$CategoriaPayload<ExtArgs>[];
 		movimentacoes: Prisma.$MovimentacaoEstoquePayload<ExtArgs>[];
 	};
 	scalars: runtime.Types.Extensions.GetPayloadResult<
@@ -1811,6 +2121,30 @@ export interface Prisma__UsuarioClient<
 		  >
 		| Null
 	>;
+	produtosCriados<T extends Prisma.Usuario$produtosCriadosArgs<ExtArgs> = {}>(
+		args?: Prisma.Subset<T, Prisma.Usuario$produtosCriadosArgs<ExtArgs>>,
+	): Prisma.PrismaPromise<
+		| runtime.Types.Result.GetResult<
+				Prisma.$ProdutoPayload<ExtArgs>,
+				T,
+				'findMany',
+				GlobalOmitOptions
+		  >
+		| Null
+	>;
+	categoriasCriadas<
+		T extends Prisma.Usuario$categoriasCriadasArgs<ExtArgs> = {},
+	>(
+		args?: Prisma.Subset<T, Prisma.Usuario$categoriasCriadasArgs<ExtArgs>>,
+	): Prisma.PrismaPromise<
+		| runtime.Types.Result.GetResult<
+				Prisma.$CategoriaPayload<ExtArgs>,
+				T,
+				'findMany',
+				GlobalOmitOptions
+		  >
+		| Null
+	>;
 	movimentacoes<T extends Prisma.Usuario$movimentacoesArgs<ExtArgs> = {}>(
 		args?: Prisma.Subset<T, Prisma.Usuario$movimentacoesArgs<ExtArgs>>,
 	): Prisma.PrismaPromise<
@@ -2389,6 +2723,66 @@ export type Usuario$membrosArgs<
 	take?: number;
 	skip?: number;
 	distinct?: Prisma.UsuarioScalarFieldEnum | Prisma.UsuarioScalarFieldEnum[];
+};
+
+/**
+ * Usuario.produtosCriados
+ */
+export type Usuario$produtosCriadosArgs<
+	ExtArgs extends
+		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+	/**
+	 * Select specific fields to fetch from the Produto
+	 */
+	select?: Prisma.ProdutoSelect<ExtArgs> | null;
+	/**
+	 * Omit specific fields from the Produto
+	 */
+	omit?: Prisma.ProdutoOmit<ExtArgs> | null;
+	/**
+	 * Choose, which related nodes to fetch as well
+	 */
+	include?: Prisma.ProdutoInclude<ExtArgs> | null;
+	where?: Prisma.ProdutoWhereInput;
+	orderBy?:
+		| Prisma.ProdutoOrderByWithRelationInput
+		| Prisma.ProdutoOrderByWithRelationInput[];
+	cursor?: Prisma.ProdutoWhereUniqueInput;
+	take?: number;
+	skip?: number;
+	distinct?: Prisma.ProdutoScalarFieldEnum | Prisma.ProdutoScalarFieldEnum[];
+};
+
+/**
+ * Usuario.categoriasCriadas
+ */
+export type Usuario$categoriasCriadasArgs<
+	ExtArgs extends
+		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
+> = {
+	/**
+	 * Select specific fields to fetch from the Categoria
+	 */
+	select?: Prisma.CategoriaSelect<ExtArgs> | null;
+	/**
+	 * Omit specific fields from the Categoria
+	 */
+	omit?: Prisma.CategoriaOmit<ExtArgs> | null;
+	/**
+	 * Choose, which related nodes to fetch as well
+	 */
+	include?: Prisma.CategoriaInclude<ExtArgs> | null;
+	where?: Prisma.CategoriaWhereInput;
+	orderBy?:
+		| Prisma.CategoriaOrderByWithRelationInput
+		| Prisma.CategoriaOrderByWithRelationInput[];
+	cursor?: Prisma.CategoriaWhereUniqueInput;
+	take?: number;
+	skip?: number;
+	distinct?:
+		| Prisma.CategoriaScalarFieldEnum
+		| Prisma.CategoriaScalarFieldEnum[];
 };
 
 /**

@@ -822,6 +822,9 @@ export type UsuarioScalarFieldEnum =
 export const CategoriaScalarFieldEnum = {
 	id: 'id',
 	nome: 'nome',
+	adminId: 'adminId',
+	criado: 'criado',
+	atualizado: 'atualizado',
 } as const;
 
 export type CategoriaScalarFieldEnum =
@@ -832,6 +835,7 @@ export const ProdutoScalarFieldEnum = {
 	codigo: 'codigo',
 	nome: 'nome',
 	descricao: 'descricao',
+	adminId: 'adminId',
 	categoriaId: 'categoriaId',
 	criado: 'criado',
 	atualizado: 'atualizado',

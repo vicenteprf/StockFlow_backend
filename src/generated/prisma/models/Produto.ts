@@ -29,12 +29,14 @@ export type AggregateProduto = {
 export type ProdutoAvgAggregateOutputType = {
 	id: number | null;
 	codigo: number | null;
+	adminId: number | null;
 	categoriaId: number | null;
 };
 
 export type ProdutoSumAggregateOutputType = {
 	id: number | null;
 	codigo: number | null;
+	adminId: number | null;
 	categoriaId: number | null;
 };
 
@@ -43,6 +45,7 @@ export type ProdutoMinAggregateOutputType = {
 	codigo: number | null;
 	nome: string | null;
 	descricao: string | null;
+	adminId: number | null;
 	categoriaId: number | null;
 	criado: Date | null;
 	atualizado: Date | null;
@@ -53,6 +56,7 @@ export type ProdutoMaxAggregateOutputType = {
 	codigo: number | null;
 	nome: string | null;
 	descricao: string | null;
+	adminId: number | null;
 	categoriaId: number | null;
 	criado: Date | null;
 	atualizado: Date | null;
@@ -63,6 +67,7 @@ export type ProdutoCountAggregateOutputType = {
 	codigo: number;
 	nome: number;
 	descricao: number;
+	adminId: number;
 	categoriaId: number;
 	criado: number;
 	atualizado: number;
@@ -72,12 +77,14 @@ export type ProdutoCountAggregateOutputType = {
 export type ProdutoAvgAggregateInputType = {
 	id?: true;
 	codigo?: true;
+	adminId?: true;
 	categoriaId?: true;
 };
 
 export type ProdutoSumAggregateInputType = {
 	id?: true;
 	codigo?: true;
+	adminId?: true;
 	categoriaId?: true;
 };
 
@@ -86,6 +93,7 @@ export type ProdutoMinAggregateInputType = {
 	codigo?: true;
 	nome?: true;
 	descricao?: true;
+	adminId?: true;
 	categoriaId?: true;
 	criado?: true;
 	atualizado?: true;
@@ -96,6 +104,7 @@ export type ProdutoMaxAggregateInputType = {
 	codigo?: true;
 	nome?: true;
 	descricao?: true;
+	adminId?: true;
 	categoriaId?: true;
 	criado?: true;
 	atualizado?: true;
@@ -106,6 +115,7 @@ export type ProdutoCountAggregateInputType = {
 	codigo?: true;
 	nome?: true;
 	descricao?: true;
+	adminId?: true;
 	categoriaId?: true;
 	criado?: true;
 	atualizado?: true;
@@ -210,6 +220,7 @@ export type ProdutoGroupByOutputType = {
 	codigo: number;
 	nome: string;
 	descricao: string | null;
+	adminId: number;
 	categoriaId: number;
 	criado: Date;
 	atualizado: Date;
@@ -241,9 +252,14 @@ export type ProdutoWhereInput = {
 	codigo?: Prisma.IntFilter<'Produto'> | number;
 	nome?: Prisma.StringFilter<'Produto'> | string;
 	descricao?: Prisma.StringNullableFilter<'Produto'> | string | null;
+	adminId?: Prisma.IntFilter<'Produto'> | number;
 	categoriaId?: Prisma.IntFilter<'Produto'> | number;
 	criado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
 	atualizado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
+	admin?: Prisma.XOR<
+		Prisma.UsuarioScalarRelationFilter,
+		Prisma.UsuarioWhereInput
+	>;
 	categoria?: Prisma.XOR<
 		Prisma.CategoriaScalarRelationFilter,
 		Prisma.CategoriaWhereInput
@@ -256,9 +272,11 @@ export type ProdutoOrderByWithRelationInput = {
 	codigo?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrderInput | Prisma.SortOrder;
+	adminId?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
+	admin?: Prisma.UsuarioOrderByWithRelationInput;
 	categoria?: Prisma.CategoriaOrderByWithRelationInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueOrderByRelationAggregateInput;
 };
@@ -272,9 +290,14 @@ export type ProdutoWhereUniqueInput = Prisma.AtLeast<
 		NOT?: Prisma.ProdutoWhereInput | Prisma.ProdutoWhereInput[];
 		nome?: Prisma.StringFilter<'Produto'> | string;
 		descricao?: Prisma.StringNullableFilter<'Produto'> | string | null;
+		adminId?: Prisma.IntFilter<'Produto'> | number;
 		categoriaId?: Prisma.IntFilter<'Produto'> | number;
 		criado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
 		atualizado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
+		admin?: Prisma.XOR<
+			Prisma.UsuarioScalarRelationFilter,
+			Prisma.UsuarioWhereInput
+		>;
 		categoria?: Prisma.XOR<
 			Prisma.CategoriaScalarRelationFilter,
 			Prisma.CategoriaWhereInput
@@ -289,6 +312,7 @@ export type ProdutoOrderByWithAggregationInput = {
 	codigo?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrderInput | Prisma.SortOrder;
+	adminId?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -314,6 +338,7 @@ export type ProdutoScalarWhereWithAggregatesInput = {
 		| Prisma.StringNullableWithAggregatesFilter<'Produto'>
 		| string
 		| null;
+	adminId?: Prisma.IntWithAggregatesFilter<'Produto'> | number;
 	categoriaId?: Prisma.IntWithAggregatesFilter<'Produto'> | number;
 	criado?: Prisma.DateTimeWithAggregatesFilter<'Produto'> | Date | string;
 	atualizado?: Prisma.DateTimeWithAggregatesFilter<'Produto'> | Date | string;
@@ -325,6 +350,7 @@ export type ProdutoCreateInput = {
 	descricao?: string | null;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	admin: Prisma.UsuarioCreateNestedOneWithoutProdutosCriadosInput;
 	categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutProdutoInput;
 };
@@ -334,6 +360,7 @@ export type ProdutoUncheckedCreateInput = {
 	codigo?: number;
 	nome: string;
 	descricao?: string | null;
+	adminId: number;
 	categoriaId: number;
 	criado?: Date | string;
 	atualizado?: Date | string;
@@ -345,6 +372,7 @@ export type ProdutoUpdateInput = {
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	admin?: Prisma.UsuarioUpdateOneRequiredWithoutProdutosCriadosNestedInput;
 	categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutProdutoNestedInput;
 };
@@ -354,6 +382,7 @@ export type ProdutoUncheckedUpdateInput = {
 	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	adminId?: Prisma.IntFieldUpdateOperationsInput | number;
 	categoriaId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -365,6 +394,7 @@ export type ProdutoCreateManyInput = {
 	codigo?: number;
 	nome: string;
 	descricao?: string | null;
+	adminId: number;
 	categoriaId: number;
 	criado?: Date | string;
 	atualizado?: Date | string;
@@ -382,6 +412,7 @@ export type ProdutoUncheckedUpdateManyInput = {
 	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	adminId?: Prisma.IntFieldUpdateOperationsInput | number;
 	categoriaId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -402,6 +433,7 @@ export type ProdutoCountOrderByAggregateInput = {
 	codigo?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrder;
+	adminId?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -410,6 +442,7 @@ export type ProdutoCountOrderByAggregateInput = {
 export type ProdutoAvgOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
 	codigo?: Prisma.SortOrder;
+	adminId?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 };
 
@@ -418,6 +451,7 @@ export type ProdutoMaxOrderByAggregateInput = {
 	codigo?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrder;
+	adminId?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -428,6 +462,7 @@ export type ProdutoMinOrderByAggregateInput = {
 	codigo?: Prisma.SortOrder;
 	nome?: Prisma.SortOrder;
 	descricao?: Prisma.SortOrder;
+	adminId?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
@@ -436,12 +471,107 @@ export type ProdutoMinOrderByAggregateInput = {
 export type ProdutoSumOrderByAggregateInput = {
 	id?: Prisma.SortOrder;
 	codigo?: Prisma.SortOrder;
+	adminId?: Prisma.SortOrder;
 	categoriaId?: Prisma.SortOrder;
 };
 
 export type ProdutoScalarRelationFilter = {
 	is?: Prisma.ProdutoWhereInput;
 	isNot?: Prisma.ProdutoWhereInput;
+};
+
+export type ProdutoCreateNestedManyWithoutAdminInput = {
+	create?:
+		| Prisma.XOR<
+				Prisma.ProdutoCreateWithoutAdminInput,
+				Prisma.ProdutoUncheckedCreateWithoutAdminInput
+		  >
+		| Prisma.ProdutoCreateWithoutAdminInput[]
+		| Prisma.ProdutoUncheckedCreateWithoutAdminInput[];
+	connectOrCreate?:
+		| Prisma.ProdutoCreateOrConnectWithoutAdminInput
+		| Prisma.ProdutoCreateOrConnectWithoutAdminInput[];
+	createMany?: Prisma.ProdutoCreateManyAdminInputEnvelope;
+	connect?: Prisma.ProdutoWhereUniqueInput | Prisma.ProdutoWhereUniqueInput[];
+};
+
+export type ProdutoUncheckedCreateNestedManyWithoutAdminInput = {
+	create?:
+		| Prisma.XOR<
+				Prisma.ProdutoCreateWithoutAdminInput,
+				Prisma.ProdutoUncheckedCreateWithoutAdminInput
+		  >
+		| Prisma.ProdutoCreateWithoutAdminInput[]
+		| Prisma.ProdutoUncheckedCreateWithoutAdminInput[];
+	connectOrCreate?:
+		| Prisma.ProdutoCreateOrConnectWithoutAdminInput
+		| Prisma.ProdutoCreateOrConnectWithoutAdminInput[];
+	createMany?: Prisma.ProdutoCreateManyAdminInputEnvelope;
+	connect?: Prisma.ProdutoWhereUniqueInput | Prisma.ProdutoWhereUniqueInput[];
+};
+
+export type ProdutoUpdateManyWithoutAdminNestedInput = {
+	create?:
+		| Prisma.XOR<
+				Prisma.ProdutoCreateWithoutAdminInput,
+				Prisma.ProdutoUncheckedCreateWithoutAdminInput
+		  >
+		| Prisma.ProdutoCreateWithoutAdminInput[]
+		| Prisma.ProdutoUncheckedCreateWithoutAdminInput[];
+	connectOrCreate?:
+		| Prisma.ProdutoCreateOrConnectWithoutAdminInput
+		| Prisma.ProdutoCreateOrConnectWithoutAdminInput[];
+	upsert?:
+		| Prisma.ProdutoUpsertWithWhereUniqueWithoutAdminInput
+		| Prisma.ProdutoUpsertWithWhereUniqueWithoutAdminInput[];
+	createMany?: Prisma.ProdutoCreateManyAdminInputEnvelope;
+	set?: Prisma.ProdutoWhereUniqueInput | Prisma.ProdutoWhereUniqueInput[];
+	disconnect?:
+		| Prisma.ProdutoWhereUniqueInput
+		| Prisma.ProdutoWhereUniqueInput[];
+	delete?: Prisma.ProdutoWhereUniqueInput | Prisma.ProdutoWhereUniqueInput[];
+	connect?: Prisma.ProdutoWhereUniqueInput | Prisma.ProdutoWhereUniqueInput[];
+	update?:
+		| Prisma.ProdutoUpdateWithWhereUniqueWithoutAdminInput
+		| Prisma.ProdutoUpdateWithWhereUniqueWithoutAdminInput[];
+	updateMany?:
+		| Prisma.ProdutoUpdateManyWithWhereWithoutAdminInput
+		| Prisma.ProdutoUpdateManyWithWhereWithoutAdminInput[];
+	deleteMany?:
+		| Prisma.ProdutoScalarWhereInput
+		| Prisma.ProdutoScalarWhereInput[];
+};
+
+export type ProdutoUncheckedUpdateManyWithoutAdminNestedInput = {
+	create?:
+		| Prisma.XOR<
+				Prisma.ProdutoCreateWithoutAdminInput,
+				Prisma.ProdutoUncheckedCreateWithoutAdminInput
+		  >
+		| Prisma.ProdutoCreateWithoutAdminInput[]
+		| Prisma.ProdutoUncheckedCreateWithoutAdminInput[];
+	connectOrCreate?:
+		| Prisma.ProdutoCreateOrConnectWithoutAdminInput
+		| Prisma.ProdutoCreateOrConnectWithoutAdminInput[];
+	upsert?:
+		| Prisma.ProdutoUpsertWithWhereUniqueWithoutAdminInput
+		| Prisma.ProdutoUpsertWithWhereUniqueWithoutAdminInput[];
+	createMany?: Prisma.ProdutoCreateManyAdminInputEnvelope;
+	set?: Prisma.ProdutoWhereUniqueInput | Prisma.ProdutoWhereUniqueInput[];
+	disconnect?:
+		| Prisma.ProdutoWhereUniqueInput
+		| Prisma.ProdutoWhereUniqueInput[];
+	delete?: Prisma.ProdutoWhereUniqueInput | Prisma.ProdutoWhereUniqueInput[];
+	connect?: Prisma.ProdutoWhereUniqueInput | Prisma.ProdutoWhereUniqueInput[];
+	update?:
+		| Prisma.ProdutoUpdateWithWhereUniqueWithoutAdminInput
+		| Prisma.ProdutoUpdateWithWhereUniqueWithoutAdminInput[];
+	updateMany?:
+		| Prisma.ProdutoUpdateManyWithWhereWithoutAdminInput
+		| Prisma.ProdutoUpdateManyWithWhereWithoutAdminInput[];
+	deleteMany?:
+		| Prisma.ProdutoScalarWhereInput
+		| Prisma.ProdutoScalarWhereInput[];
 };
 
 export type ProdutoCreateNestedManyWithoutCategoriaInput = {
@@ -564,12 +694,91 @@ export type ProdutoUpdateOneRequiredWithoutMovimentacoesNestedInput = {
 	>;
 };
 
+export type ProdutoCreateWithoutAdminInput = {
+	codigo?: number;
+	nome: string;
+	descricao?: string | null;
+	criado?: Date | string;
+	atualizado?: Date | string;
+	categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutProdutoInput;
+};
+
+export type ProdutoUncheckedCreateWithoutAdminInput = {
+	id?: number;
+	codigo?: number;
+	nome: string;
+	descricao?: string | null;
+	categoriaId: number;
+	criado?: Date | string;
+	atualizado?: Date | string;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutProdutoInput;
+};
+
+export type ProdutoCreateOrConnectWithoutAdminInput = {
+	where: Prisma.ProdutoWhereUniqueInput;
+	create: Prisma.XOR<
+		Prisma.ProdutoCreateWithoutAdminInput,
+		Prisma.ProdutoUncheckedCreateWithoutAdminInput
+	>;
+};
+
+export type ProdutoCreateManyAdminInputEnvelope = {
+	data:
+		| Prisma.ProdutoCreateManyAdminInput
+		| Prisma.ProdutoCreateManyAdminInput[];
+	skipDuplicates?: boolean;
+};
+
+export type ProdutoUpsertWithWhereUniqueWithoutAdminInput = {
+	where: Prisma.ProdutoWhereUniqueInput;
+	update: Prisma.XOR<
+		Prisma.ProdutoUpdateWithoutAdminInput,
+		Prisma.ProdutoUncheckedUpdateWithoutAdminInput
+	>;
+	create: Prisma.XOR<
+		Prisma.ProdutoCreateWithoutAdminInput,
+		Prisma.ProdutoUncheckedCreateWithoutAdminInput
+	>;
+};
+
+export type ProdutoUpdateWithWhereUniqueWithoutAdminInput = {
+	where: Prisma.ProdutoWhereUniqueInput;
+	data: Prisma.XOR<
+		Prisma.ProdutoUpdateWithoutAdminInput,
+		Prisma.ProdutoUncheckedUpdateWithoutAdminInput
+	>;
+};
+
+export type ProdutoUpdateManyWithWhereWithoutAdminInput = {
+	where: Prisma.ProdutoScalarWhereInput;
+	data: Prisma.XOR<
+		Prisma.ProdutoUpdateManyMutationInput,
+		Prisma.ProdutoUncheckedUpdateManyWithoutAdminInput
+	>;
+};
+
+export type ProdutoScalarWhereInput = {
+	AND?: Prisma.ProdutoScalarWhereInput | Prisma.ProdutoScalarWhereInput[];
+	OR?: Prisma.ProdutoScalarWhereInput[];
+	NOT?: Prisma.ProdutoScalarWhereInput | Prisma.ProdutoScalarWhereInput[];
+	id?: Prisma.IntFilter<'Produto'> | number;
+	codigo?: Prisma.IntFilter<'Produto'> | number;
+	nome?: Prisma.StringFilter<'Produto'> | string;
+	descricao?: Prisma.StringNullableFilter<'Produto'> | string | null;
+	adminId?: Prisma.IntFilter<'Produto'> | number;
+	categoriaId?: Prisma.IntFilter<'Produto'> | number;
+	criado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
+	atualizado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
+};
+
 export type ProdutoCreateWithoutCategoriaInput = {
 	codigo?: number;
 	nome: string;
 	descricao?: string | null;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	admin: Prisma.UsuarioCreateNestedOneWithoutProdutosCriadosInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueCreateNestedManyWithoutProdutoInput;
 };
 
@@ -578,6 +787,7 @@ export type ProdutoUncheckedCreateWithoutCategoriaInput = {
 	codigo?: number;
 	nome: string;
 	descricao?: string | null;
+	adminId: number;
 	criado?: Date | string;
 	atualizado?: Date | string;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutProdutoInput;
@@ -626,25 +836,13 @@ export type ProdutoUpdateManyWithWhereWithoutCategoriaInput = {
 	>;
 };
 
-export type ProdutoScalarWhereInput = {
-	AND?: Prisma.ProdutoScalarWhereInput | Prisma.ProdutoScalarWhereInput[];
-	OR?: Prisma.ProdutoScalarWhereInput[];
-	NOT?: Prisma.ProdutoScalarWhereInput | Prisma.ProdutoScalarWhereInput[];
-	id?: Prisma.IntFilter<'Produto'> | number;
-	codigo?: Prisma.IntFilter<'Produto'> | number;
-	nome?: Prisma.StringFilter<'Produto'> | string;
-	descricao?: Prisma.StringNullableFilter<'Produto'> | string | null;
-	categoriaId?: Prisma.IntFilter<'Produto'> | number;
-	criado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
-	atualizado?: Prisma.DateTimeFilter<'Produto'> | Date | string;
-};
-
 export type ProdutoCreateWithoutMovimentacoesInput = {
 	codigo?: number;
 	nome: string;
 	descricao?: string | null;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	admin: Prisma.UsuarioCreateNestedOneWithoutProdutosCriadosInput;
 	categoria: Prisma.CategoriaCreateNestedOneWithoutProdutosInput;
 };
 
@@ -653,6 +851,7 @@ export type ProdutoUncheckedCreateWithoutMovimentacoesInput = {
 	codigo?: number;
 	nome: string;
 	descricao?: string | null;
+	adminId: number;
 	categoriaId: number;
 	criado?: Date | string;
 	atualizado?: Date | string;
@@ -691,10 +890,52 @@ export type ProdutoUpdateWithoutMovimentacoesInput = {
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	admin?: Prisma.UsuarioUpdateOneRequiredWithoutProdutosCriadosNestedInput;
 	categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput;
 };
 
 export type ProdutoUncheckedUpdateWithoutMovimentacoesInput = {
+	id?: Prisma.IntFieldUpdateOperationsInput | number;
+	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	adminId?: Prisma.IntFieldUpdateOperationsInput | number;
+	categoriaId?: Prisma.IntFieldUpdateOperationsInput | number;
+	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type ProdutoCreateManyAdminInput = {
+	id?: number;
+	codigo?: number;
+	nome: string;
+	descricao?: string | null;
+	categoriaId: number;
+	criado?: Date | string;
+	atualizado?: Date | string;
+};
+
+export type ProdutoUpdateWithoutAdminInput = {
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	categoria?: Prisma.CategoriaUpdateOneRequiredWithoutProdutosNestedInput;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutProdutoNestedInput;
+};
+
+export type ProdutoUncheckedUpdateWithoutAdminInput = {
+	id?: Prisma.IntFieldUpdateOperationsInput | number;
+	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
+	nome?: Prisma.StringFieldUpdateOperationsInput | string;
+	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	categoriaId?: Prisma.IntFieldUpdateOperationsInput | number;
+	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutProdutoNestedInput;
+};
+
+export type ProdutoUncheckedUpdateManyWithoutAdminInput = {
 	id?: Prisma.IntFieldUpdateOperationsInput | number;
 	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -709,6 +950,7 @@ export type ProdutoCreateManyCategoriaInput = {
 	codigo?: number;
 	nome: string;
 	descricao?: string | null;
+	adminId: number;
 	criado?: Date | string;
 	atualizado?: Date | string;
 };
@@ -718,6 +960,7 @@ export type ProdutoUpdateWithoutCategoriaInput = {
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	admin?: Prisma.UsuarioUpdateOneRequiredWithoutProdutosCriadosNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUpdateManyWithoutProdutoNestedInput;
 };
 
@@ -726,6 +969,7 @@ export type ProdutoUncheckedUpdateWithoutCategoriaInput = {
 	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	adminId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutProdutoNestedInput;
@@ -736,6 +980,7 @@ export type ProdutoUncheckedUpdateManyWithoutCategoriaInput = {
 	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	adminId?: Prisma.IntFieldUpdateOperationsInput | number;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -787,9 +1032,11 @@ export type ProdutoSelect<
 		codigo?: boolean;
 		nome?: boolean;
 		descricao?: boolean;
+		adminId?: boolean;
 		categoriaId?: boolean;
 		criado?: boolean;
 		atualizado?: boolean;
+		admin?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>;
 		categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>;
 		movimentacoes?: boolean | Prisma.Produto$movimentacoesArgs<ExtArgs>;
 		_count?: boolean | Prisma.ProdutoCountOutputTypeDefaultArgs<ExtArgs>;
@@ -806,9 +1053,11 @@ export type ProdutoSelectCreateManyAndReturn<
 		codigo?: boolean;
 		nome?: boolean;
 		descricao?: boolean;
+		adminId?: boolean;
 		categoriaId?: boolean;
 		criado?: boolean;
 		atualizado?: boolean;
+		admin?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>;
 		categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>;
 	},
 	ExtArgs['result']['produto']
@@ -823,9 +1072,11 @@ export type ProdutoSelectUpdateManyAndReturn<
 		codigo?: boolean;
 		nome?: boolean;
 		descricao?: boolean;
+		adminId?: boolean;
 		categoriaId?: boolean;
 		criado?: boolean;
 		atualizado?: boolean;
+		admin?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>;
 		categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>;
 	},
 	ExtArgs['result']['produto']
@@ -836,6 +1087,7 @@ export type ProdutoSelectScalar = {
 	codigo?: boolean;
 	nome?: boolean;
 	descricao?: boolean;
+	adminId?: boolean;
 	categoriaId?: boolean;
 	criado?: boolean;
 	atualizado?: boolean;
@@ -849,6 +1101,7 @@ export type ProdutoOmit<
 	| 'codigo'
 	| 'nome'
 	| 'descricao'
+	| 'adminId'
 	| 'categoriaId'
 	| 'criado'
 	| 'atualizado',
@@ -858,6 +1111,7 @@ export type ProdutoInclude<
 	ExtArgs extends
 		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+	admin?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>;
 	categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>;
 	movimentacoes?: boolean | Prisma.Produto$movimentacoesArgs<ExtArgs>;
 	_count?: boolean | Prisma.ProdutoCountOutputTypeDefaultArgs<ExtArgs>;
@@ -866,12 +1120,14 @@ export type ProdutoIncludeCreateManyAndReturn<
 	ExtArgs extends
 		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+	admin?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>;
 	categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>;
 };
 export type ProdutoIncludeUpdateManyAndReturn<
 	ExtArgs extends
 		runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs,
 > = {
+	admin?: boolean | Prisma.UsuarioDefaultArgs<ExtArgs>;
 	categoria?: boolean | Prisma.CategoriaDefaultArgs<ExtArgs>;
 };
 
@@ -881,6 +1137,7 @@ export type $ProdutoPayload<
 > = {
 	name: 'Produto';
 	objects: {
+		admin: Prisma.$UsuarioPayload<ExtArgs>;
 		categoria: Prisma.$CategoriaPayload<ExtArgs>;
 		movimentacoes: Prisma.$MovimentacaoEstoquePayload<ExtArgs>[];
 	};
@@ -890,6 +1147,7 @@ export type $ProdutoPayload<
 			codigo: number;
 			nome: string;
 			descricao: string | null;
+			adminId: number;
 			categoriaId: number;
 			criado: Date;
 			atualizado: Date;
@@ -1443,6 +1701,20 @@ export interface Prisma__ProdutoClient<
 	GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
 	readonly [Symbol.toStringTag]: 'PrismaPromise';
+	admin<T extends Prisma.UsuarioDefaultArgs<ExtArgs> = {}>(
+		args?: Prisma.Subset<T, Prisma.UsuarioDefaultArgs<ExtArgs>>,
+	): Prisma.Prisma__UsuarioClient<
+		| runtime.Types.Result.GetResult<
+				Prisma.$UsuarioPayload<ExtArgs>,
+				T,
+				'findUniqueOrThrow',
+				GlobalOmitOptions
+		  >
+		| Null,
+		Null,
+		ExtArgs,
+		GlobalOmitOptions
+	>;
 	categoria<T extends Prisma.CategoriaDefaultArgs<ExtArgs> = {}>(
 		args?: Prisma.Subset<T, Prisma.CategoriaDefaultArgs<ExtArgs>>,
 	): Prisma.Prisma__CategoriaClient<
@@ -1514,6 +1786,7 @@ export interface ProdutoFieldRefs {
 	readonly codigo: Prisma.FieldRef<'Produto', 'Int'>;
 	readonly nome: Prisma.FieldRef<'Produto', 'String'>;
 	readonly descricao: Prisma.FieldRef<'Produto', 'String'>;
+	readonly adminId: Prisma.FieldRef<'Produto', 'Int'>;
 	readonly categoriaId: Prisma.FieldRef<'Produto', 'Int'>;
 	readonly criado: Prisma.FieldRef<'Produto', 'DateTime'>;
 	readonly atualizado: Prisma.FieldRef<'Produto', 'DateTime'>;
