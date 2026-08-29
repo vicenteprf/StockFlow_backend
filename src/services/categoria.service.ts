@@ -5,6 +5,7 @@ import type {
 	UpdateCategoria,
 } from '../schemas/categoria.schema.ts';
 import type { Categoria } from '../Types/types.ts';
+import { getAdminIdBase } from '../utils/equipe.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
 	return (
@@ -15,16 +16,21 @@ function isPrismaKnownError(e: unknown): e is { code: string } {
 	);
 }
 
-export async function findAllCategoria() {
-	const allCategory = await prisma.categoria.findMany();
+export async function findAllCategoria(usuarioLogadoId: number) {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
 
-	return allCategory;
+	return await prisma.categoria.findMany({
+		where: { adminId: adminIdBase },
+	});
 }
 
-export async function findCategoriaById(id: number) {
-	const categoryId = await prisma.categoria.findUnique({
+export async function findCategoriaById(id: number, usuarioLogadoId: number) {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
+	const categoryId = await prisma.categoria.findFirst({
 		where: {
 			id,
+			adminId: adminIdBase,
 		},
 	});
 
@@ -35,13 +41,17 @@ export async function findCategoriaById(id: number) {
 	return categoryId;
 }
 
-export async function insertCategoria({
-	nome,
-}: CreateCategoria): Promise<Categoria> {
+export async function insertCategoria(
+	{ nome }: CreateCategoria,
+	usuarioLogadoId: number,
+): Promise<Categoria> {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	try {
 		const newCategory: Categoria = await prisma.categoria.create({
 			data: {
 				nome,
+				adminId: adminIdBase,
 			},
 		});
 
@@ -58,11 +68,15 @@ export async function insertCategoria({
 export async function modifyCategoria(
 	id: number,
 	{ nome }: UpdateCategoria,
+	usuarioLogadoId: number,
 ): Promise<Categoria> {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	try {
 		const modifyCategoria = await prisma.categoria.update({
 			where: {
 				id,
+				adminId: adminIdBase,
 			},
 			data: {
 				nome,
@@ -79,11 +93,17 @@ export async function modifyCategoria(
 	}
 }
 
-export async function removeCategoria(id: number): Promise<void> {
+export async function removeCategoria(
+	id: number,
+	usuarioLogadoId: number,
+): Promise<void> {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	try {
 		await prisma.categoria.delete({
 			where: {
 				id,
+				adminId: adminIdBase,
 			},
 		});
 	} catch (e) {
