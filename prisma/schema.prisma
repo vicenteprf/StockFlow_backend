@@ -33,6 +33,9 @@ model Usuario {
   admin Usuario? @relation("EquipeAdmin", fields: [adminId], references: [id])
   membros Usuario[] @relation("EquipeAdmin")
 
+  produtosCriados Produto[] @relation("AdminProdutos")
+  categoriasCriadas Categoria[] @relation("AdminCategorias")
+
   movimentacoes MovimentacaoEstoque[]
 }
 
@@ -40,7 +43,16 @@ model Categoria {
   id Int @id @default(autoincrement())
   nome String @unique
 
+  adminId Int
+  admin Usuario @relation("AdminCategorias", fields: [adminId], references: [id], onDelete: Cascade)
+
   produtos Produto[]
+
+  criado DateTime @default(now())
+  atualizado DateTime @updatedAt
+
+  @@unique([nome, adminId])
+  
 }
 
 model Produto {
@@ -48,6 +60,10 @@ model Produto {
   codigo Int @default(autoincrement()) @unique
   nome String
   descricao String?
+
+  adminId Int
+  admin Usuario @relation("AdminProdutos",fields: [adminId], references: [id], onDelete: Cascade)
+  
   
   categoriaId Int
   categoria Categoria @relation(fields: [categoriaId], references: [id])
