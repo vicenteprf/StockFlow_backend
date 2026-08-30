@@ -9,6 +9,7 @@ import {
 } from '../errors/index.ts';
 import type { CreateUsuario } from '../schemas/usuario.schema.ts';
 import type { UsuarioPublico } from '../Types/types.ts';
+import { getAdminIdBase } from '../utils/equipe.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
 	return (
@@ -22,25 +23,7 @@ function isPrismaKnownError(e: unknown): e is { code: string } {
 const SALT_ROUNDS = 10;
 
 export async function findAllUsuarioDaEquipe(usuarioLogadoId: number) {
-	if (!usuarioLogadoId) {
-		throw new UnauthorizedError('Usuário não autenticado.');
-	}
-
-	const usuarioLogado = await prisma.usuario.findUnique({
-		where: { id: usuarioLogadoId },
-		select: { id: true, role: true, adminId: true },
-	});
-
-	if (!usuarioLogado) {
-		throw new NotFoundError('Usuário não encontrado.');
-	}
-
-	const adminIdBase =
-		usuarioLogado.role === 'ADMIN' ? usuarioLogado.id : usuarioLogado.adminId;
-
-	if (!adminIdBase) {
-		return [usuarioLogado];
-	}
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
 
 	return await prisma.usuario.findMany({
 		where: {
@@ -115,10 +98,33 @@ export async function insertUsuario({
 	}
 }
 
-export async function removeUsuario(id: number): Promise<void> {
+export async function removeUsuario(
+	id: number,
+	usuarioLogadoId: number,
+): Promise<void> {
+	const usuarioLogado = await prisma.usuario.findUnique({
+		where: { id: usuarioLogadoId },
+		select: { id: true, role: true },
+	});
+
+	if (!usuarioLogado || usuarioLogado.role !== 'ADMIN') {
+		throw new UnauthorizedError(
+			'Apenas administradores podem remover membros da equipe.',
+		);
+	}
+
+	if (id === usuarioLogadoId) {
+		throw new ConflictError(
+			'Você não pode remover sua própria conta de administrador.',
+		);
+	}
+
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	try {
 		await prisma.usuario.delete({
 			where: {
+				adminId: adminIdBase,
 				id,
 			},
 		});

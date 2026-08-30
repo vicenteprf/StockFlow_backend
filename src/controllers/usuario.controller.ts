@@ -32,8 +32,9 @@ export async function createUsuario(req: Request, res: Response) {
 
 export async function deleteUsuario(req: Request, res: Response) {
 	const id = Number(req.params.id);
+	const usuarioLogado = Number(req.id);
 
-	await UsuarioService.removeUsuario(id);
+	await UsuarioService.removeUsuario(id, usuarioLogado);
 
 	res.status(204).send();
 }
