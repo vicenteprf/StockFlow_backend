@@ -63,6 +63,7 @@ passport.use(
 							nome,
 							avatarUrl,
 							googleId: profile.id,
+							role: 'ADMIN',
 						},
 					});
 				} else if (!user.googleId) {
