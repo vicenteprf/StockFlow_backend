@@ -6,16 +6,19 @@ import {
 } from '../services/movimentacao.service.ts';
 
 export async function criarMovimentacaoController(req: Request, res: Response) {
-	const usuarioId = req.id;
+	const usuarioLogadoId = Number(req.id);
 
-	if (!usuarioId) {
+	if (!usuarioLogadoId) {
 		throw new NotFoundError('Usuário não autenticado.');
 	}
 
-	const resultado = await criarMovimentacaoService({
-		...req.body,
-		usuarioId,
-	});
+	const resultado = await criarMovimentacaoService(
+		{
+			...req.body,
+			usuarioId: usuarioLogadoId,
+		},
+		usuarioLogadoId,
+	);
 
 	return res.status(201).json({
 		mensagem: 'Movimentação realizada com sucesso',
@@ -27,8 +30,13 @@ export async function getMovimentacoes(req: Request, res: Response) {
 	const { usuarioId: usuarioIdQuery, nome } = req.query;
 	const usuarioId = usuarioIdQuery ? Number(usuarioIdQuery) : undefined;
 	const nomeUsuario = typeof nome === 'string' ? nome : undefined;
+	const usuarioLogado = Number(req.id);
 
-	const movimentacoes = await findAllMovimentacoes(usuarioId, nomeUsuario);
+	const movimentacoes = await findAllMovimentacoes(
+		usuarioLogado,
+		usuarioId,
+		nomeUsuario,
+	);
 
 	return res.status(200).json(movimentacoes);
 }

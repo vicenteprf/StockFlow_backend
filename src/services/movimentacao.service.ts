@@ -1,24 +1,30 @@
 import { prisma } from '../data/cliente.Prisma.ts';
 import { NotFoundError, UnprocessableEntityError } from '../errors/index.ts';
 import type { RegistrarMovimentacaoBody } from '../schemas/movimentacao.schema.ts';
+import { getAdminIdBase } from '../utils/equipe.ts';
 
 interface RegistrarMovimentacaoParams extends RegistrarMovimentacaoBody {
 	usuarioId: number;
 }
 
-export async function criarMovimentacaoService({
-	produtoId,
-	usuarioId,
-	tipo,
-	quantidade,
-	preco,
-	validade,
-	motivo,
-	observacao,
-}: RegistrarMovimentacaoParams) {
+export async function criarMovimentacaoService(
+	{
+		produtoId,
+		usuarioId,
+		tipo,
+		quantidade,
+		preco,
+		validade,
+		motivo,
+		observacao,
+	}: RegistrarMovimentacaoParams,
+	usuarioLogadoId: number,
+) {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	return await prisma.$transaction(async (tx) => {
 		const produto = await tx.produto.findUnique({
-			where: { id: produtoId },
+			where: { id: produtoId, adminId: adminIdBase },
 		});
 
 		if (!produto) {
@@ -67,11 +73,17 @@ export async function criarMovimentacaoService({
 }
 
 export async function findAllMovimentacoes(
+	usuarioLogadoId: number,
 	usuarioId?: number,
 	nomeUsuario?: string,
 ) {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	const movimentacoes = await prisma.movimentacaoEstoque.findMany({
 		where: {
+			produto: {
+				adminId: adminIdBase,
+			},
 			...(usuarioId ? { usuarioId } : {}),
 			...(nomeUsuario
 				? {
