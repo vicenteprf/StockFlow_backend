@@ -5,6 +5,7 @@ import type {
 	UpdateProduto,
 } from '../schemas/produto.schema.ts';
 import type { Produto } from '../Types/types.ts';
+import { getAdminIdBase } from '../utils/equipe.ts';
 
 function isPrismaKnownError(e: unknown): e is { code: string } {
 	return (
@@ -15,8 +16,13 @@ function isPrismaKnownError(e: unknown): e is { code: string } {
 	);
 }
 
-export async function findAllProdutos() {
+export async function findAllProdutos(usuarioLogadoId: number) {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	const allProdutos = await prisma.produto.findMany({
+		where: {
+			adminId: adminIdBase,
+		},
 		include: {
 			categoria: true,
 			movimentacoes: {
@@ -63,10 +69,13 @@ export async function findAllProdutos() {
 	});
 }
 
-export async function findProdutoById(id: number) {
-	const produto = await prisma.produto.findUnique({
+export async function findProdutoById(id: number, usuarioLogadoId: number) {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
+	const produto = await prisma.produto.findFirst({
 		where: {
 			id,
+			adminId: adminIdBase,
 		},
 		include: {
 			categoria: true,
@@ -105,17 +114,32 @@ export async function findProdutoById(id: number) {
 	};
 }
 
-export async function insertProduto({
-	nome,
-	descricao,
-	categoriaId,
-}: CreateProduto): Promise<Produto> {
+export async function insertProduto(
+	{ nome, descricao, categoriaId }: CreateProduto,
+	usuarioLogadoId: number,
+): Promise<Produto> {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
+	const categoriaDaEquipe = await prisma.categoria.findFirst({
+		where: {
+			id: categoriaId,
+			adminId: adminIdBase,
+		},
+	});
+
+	if (!categoriaDaEquipe) {
+		throw new UnprocessableEntityError(
+			'Categoria não encontrada ou não pertence à sua equipe.',
+		);
+	}
+
 	try {
 		const newProduto = await prisma.produto.create({
 			data: {
 				nome,
 				descricao,
 				categoriaId: categoriaId,
+				adminId: adminIdBase,
 			},
 			include: {
 				categoria: true,
@@ -141,11 +165,15 @@ export async function insertProduto({
 export async function modifyProduto(
 	id: number,
 	{ nome, descricao, categoriaId }: UpdateProduto,
+	usuarioLogadoId: number,
 ): Promise<Produto> {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	try {
 		const modified = await prisma.produto.update({
 			where: {
 				id,
+				adminId: adminIdBase,
 			},
 			data: {
 				nome,
@@ -177,11 +205,17 @@ export async function modifyProduto(
 	}
 }
 
-export async function removeProduto(id: number): Promise<void> {
+export async function removeProduto(
+	id: number,
+	usuarioLogadoId: number,
+): Promise<void> {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
 	try {
 		await prisma.produto.delete({
 			where: {
 				id,
+				adminId: adminIdBase,
 			},
 		});
 	} catch (e) {
