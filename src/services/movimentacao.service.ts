@@ -1,3 +1,4 @@
+import { includes } from 'zod';
 import { prisma } from '../data/cliente.Prisma.ts';
 import { NotFoundError, UnprocessableEntityError } from '../errors/index.ts';
 import type { RegistrarMovimentacaoBody } from '../schemas/movimentacao.schema.ts';
@@ -85,7 +86,11 @@ export async function criarMovimentacaoService(
 				observacao,
 			},
 			include: {
-				produto: true,
+				produto: {
+					include: {
+						categoria: true,
+					},
+				},
 			},
 		});
 
@@ -118,7 +123,11 @@ export async function findAllMovimentacoes(
 				: {}),
 		},
 		include: {
-			produto: true,
+			produto: {
+				include: {
+					categoria: true,
+				},
+			},
 		},
 		orderBy: { criado: 'desc' },
 	});
