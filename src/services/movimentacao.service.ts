@@ -31,6 +31,8 @@ export async function criarMovimentacaoService(
 			throw new NotFoundError('Produto não encontrado.');
 		}
 
+		let precoFinal = preco;
+
 		if (tipo === 'SAIDA') {
 			const movimentacao = await tx.movimentacaoEstoque.findMany({
 				where: {
@@ -50,6 +52,25 @@ export async function criarMovimentacaoService(
 					`Estoque insuficiente: saldo atual (${saldoAtual}) é menor que a quantidade solicitada (${quantidade}).`,
 				);
 			}
+
+			if (precoFinal === undefined || precoFinal === null) {
+				const ultimaEntrada = await tx.movimentacaoEstoque.findFirst({
+					where: {
+						produtoId,
+						tipo: 'ENTRADA',
+						preco: {
+							not: null,
+						},
+					},
+					orderBy: {
+						criado: 'desc',
+					},
+				});
+
+				if (ultimaEntrada?.preco) {
+					precoFinal = Number(ultimaEntrada.preco);
+				}
+			}
 		}
 
 		const movimentacao = await tx.movimentacaoEstoque.create({
@@ -58,7 +79,7 @@ export async function criarMovimentacaoService(
 				usuarioId,
 				tipo,
 				quantidade,
-				preco,
+				preco: precoFinal,
 				validade,
 				motivo,
 				observacao,
