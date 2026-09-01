@@ -41,7 +41,7 @@ model Usuario {
 
 model Categoria {
   id Int @id @default(autoincrement())
-  nome String @unique
+  nome String 
 
   adminId Int
   admin Usuario @relation("AdminCategorias", fields: [adminId], references: [id], onDelete: Cascade)
@@ -57,7 +57,7 @@ model Categoria {
 
 model Produto {
   id Int @id @default(autoincrement())
-  codigo Int @default(autoincrement()) @unique
+  codigo Int 
   nome String
   descricao String?
 
@@ -72,6 +72,9 @@ model Produto {
   atualizado DateTime @updatedAt
 
   movimentacoes MovimentacaoEstoque[]
+
+  @@unique([codigo, adminId])
+  @@unique([nome, adminId])
 }
 
 enum TipoMovimentacao {
