@@ -133,9 +133,18 @@ export async function insertProduto(
 		);
 	}
 
+	const ultimoProduto = await prisma.produto.findFirst({
+		where: { adminId: adminIdBase },
+		orderBy: { codigo: 'desc' },
+		select: { codigo: true },
+	});
+
+	const proximoCodigo = ultimoProduto ? ultimoProduto.codigo + 1 : 1;
+
 	try {
 		const newProduto = await prisma.produto.create({
 			data: {
+				codigo: proximoCodigo,
 				nome,
 				descricao,
 				categoriaId: categoriaId,
@@ -154,8 +163,16 @@ export async function insertProduto(
 			categoria: newProduto.categoria,
 		};
 	} catch (e) {
-		if (isPrismaKnownError(e) && e.code === 'P2003') {
-			throw new UnprocessableEntityError('Categoria não encontrada.');
+		if (isPrismaKnownError(e)) {
+			if (e.code === 'P2003') {
+				throw new UnprocessableEntityError('Categoria não encontrada.');
+			}
+
+			if (e.code === 'P2002') {
+				throw new UnprocessableEntityError(
+					'Já existe um produto com este nome ou código neste estoque.',
+				);
+			}
 		}
 
 		throw e;
