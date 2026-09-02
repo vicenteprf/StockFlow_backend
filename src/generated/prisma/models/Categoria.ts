@@ -244,11 +244,11 @@ export type CategoriaOrderByWithRelationInput = {
 export type CategoriaWhereUniqueInput = Prisma.AtLeast<
 	{
 		id?: number;
-		nome?: string;
 		nome_adminId?: Prisma.CategoriaNomeAdminIdCompoundUniqueInput;
 		AND?: Prisma.CategoriaWhereInput | Prisma.CategoriaWhereInput[];
 		OR?: Prisma.CategoriaWhereInput[];
 		NOT?: Prisma.CategoriaWhereInput | Prisma.CategoriaWhereInput[];
+		nome?: Prisma.StringFilter<'Categoria'> | string;
 		adminId?: Prisma.IntFilter<'Categoria'> | number;
 		criado?: Prisma.DateTimeFilter<'Categoria'> | Date | string;
 		atualizado?: Prisma.DateTimeFilter<'Categoria'> | Date | string;
@@ -258,7 +258,7 @@ export type CategoriaWhereUniqueInput = Prisma.AtLeast<
 		>;
 		produtos?: Prisma.ProdutoListRelationFilter;
 	},
-	'id' | 'nome' | 'nome_adminId'
+	'id' | 'nome_adminId'
 >;
 
 export type CategoriaOrderByWithAggregationInput = {

@@ -88,6 +88,8 @@ export const UsuarioScalarFieldEnum = {
 	criado: 'criado',
 	atualizado: 'atualizado',
 	adminId: 'adminId',
+	resetToken: 'resetToken',
+	resetTokenExpira: 'resetTokenExpira',
 } as const;
 
 export type UsuarioScalarFieldEnum =

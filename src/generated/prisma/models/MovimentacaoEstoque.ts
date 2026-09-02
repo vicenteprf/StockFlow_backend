@@ -864,10 +864,6 @@ export type NullableDecimalFieldUpdateOperationsInput = {
 	divide?: runtime.Decimal | runtime.DecimalJsLike | number | string;
 };
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-	set?: Date | string | null;
-};
-
 export type MovimentacaoEstoqueCreateWithoutUsuarioInput = {
 	quantidade: number;
 	tipo: $Enums.TipoMovimentacao;

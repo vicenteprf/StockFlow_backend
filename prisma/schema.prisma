@@ -36,6 +36,9 @@ model Usuario {
   produtosCriados Produto[] @relation("AdminProdutos")
   categoriasCriadas Categoria[] @relation("AdminCategorias")
 
+  resetToken String?
+  resetTokenExpira DateTime?
+
   movimentacoes MovimentacaoEstoque[]
 }
 
@@ -72,6 +75,8 @@ model Produto {
   atualizado DateTime @updatedAt
 
   movimentacoes MovimentacaoEstoque[]
+
+  
 
   @@unique([codigo, adminId])
   @@unique([nome, adminId])

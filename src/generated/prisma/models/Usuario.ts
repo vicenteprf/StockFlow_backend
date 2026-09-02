@@ -48,6 +48,8 @@ export type UsuarioMinAggregateOutputType = {
 	criado: Date | null;
 	atualizado: Date | null;
 	adminId: number | null;
+	resetToken: string | null;
+	resetTokenExpira: Date | null;
 };
 
 export type UsuarioMaxAggregateOutputType = {
@@ -62,6 +64,8 @@ export type UsuarioMaxAggregateOutputType = {
 	criado: Date | null;
 	atualizado: Date | null;
 	adminId: number | null;
+	resetToken: string | null;
+	resetTokenExpira: Date | null;
 };
 
 export type UsuarioCountAggregateOutputType = {
@@ -76,6 +80,8 @@ export type UsuarioCountAggregateOutputType = {
 	criado: number;
 	atualizado: number;
 	adminId: number;
+	resetToken: number;
+	resetTokenExpira: number;
 	_all: number;
 };
 
@@ -101,6 +107,8 @@ export type UsuarioMinAggregateInputType = {
 	criado?: true;
 	atualizado?: true;
 	adminId?: true;
+	resetToken?: true;
+	resetTokenExpira?: true;
 };
 
 export type UsuarioMaxAggregateInputType = {
@@ -115,6 +123,8 @@ export type UsuarioMaxAggregateInputType = {
 	criado?: true;
 	atualizado?: true;
 	adminId?: true;
+	resetToken?: true;
+	resetTokenExpira?: true;
 };
 
 export type UsuarioCountAggregateInputType = {
@@ -129,6 +139,8 @@ export type UsuarioCountAggregateInputType = {
 	criado?: true;
 	atualizado?: true;
 	adminId?: true;
+	resetToken?: true;
+	resetTokenExpira?: true;
 	_all?: true;
 };
 
@@ -237,6 +249,8 @@ export type UsuarioGroupByOutputType = {
 	criado: Date;
 	atualizado: Date;
 	adminId: number | null;
+	resetToken: string | null;
+	resetTokenExpira: Date | null;
 	_count: UsuarioCountAggregateOutputType | null;
 	_avg: UsuarioAvgAggregateOutputType | null;
 	_sum: UsuarioSumAggregateOutputType | null;
@@ -272,6 +286,12 @@ export type UsuarioWhereInput = {
 	criado?: Prisma.DateTimeFilter<'Usuario'> | Date | string;
 	atualizado?: Prisma.DateTimeFilter<'Usuario'> | Date | string;
 	adminId?: Prisma.IntNullableFilter<'Usuario'> | number | null;
+	resetToken?: Prisma.StringNullableFilter<'Usuario'> | string | null;
+	resetTokenExpira?:
+		| Prisma.DateTimeNullableFilter<'Usuario'>
+		| Date
+		| string
+		| null;
 	admin?: Prisma.XOR<
 		Prisma.UsuarioNullableScalarRelationFilter,
 		Prisma.UsuarioWhereInput
@@ -294,6 +314,8 @@ export type UsuarioOrderByWithRelationInput = {
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
 	adminId?: Prisma.SortOrderInput | Prisma.SortOrder;
+	resetToken?: Prisma.SortOrderInput | Prisma.SortOrder;
+	resetTokenExpira?: Prisma.SortOrderInput | Prisma.SortOrder;
 	admin?: Prisma.UsuarioOrderByWithRelationInput;
 	membros?: Prisma.UsuarioOrderByRelationAggregateInput;
 	produtosCriados?: Prisma.ProdutoOrderByRelationAggregateInput;
@@ -317,6 +339,12 @@ export type UsuarioWhereUniqueInput = Prisma.AtLeast<
 		criado?: Prisma.DateTimeFilter<'Usuario'> | Date | string;
 		atualizado?: Prisma.DateTimeFilter<'Usuario'> | Date | string;
 		adminId?: Prisma.IntNullableFilter<'Usuario'> | number | null;
+		resetToken?: Prisma.StringNullableFilter<'Usuario'> | string | null;
+		resetTokenExpira?:
+			| Prisma.DateTimeNullableFilter<'Usuario'>
+			| Date
+			| string
+			| null;
 		admin?: Prisma.XOR<
 			Prisma.UsuarioNullableScalarRelationFilter,
 			Prisma.UsuarioWhereInput
@@ -341,6 +369,8 @@ export type UsuarioOrderByWithAggregationInput = {
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
 	adminId?: Prisma.SortOrderInput | Prisma.SortOrder;
+	resetToken?: Prisma.SortOrderInput | Prisma.SortOrder;
+	resetTokenExpira?: Prisma.SortOrderInput | Prisma.SortOrder;
 	_count?: Prisma.UsuarioCountOrderByAggregateInput;
 	_avg?: Prisma.UsuarioAvgOrderByAggregateInput;
 	_max?: Prisma.UsuarioMaxOrderByAggregateInput;
@@ -379,6 +409,15 @@ export type UsuarioScalarWhereWithAggregatesInput = {
 	criado?: Prisma.DateTimeWithAggregatesFilter<'Usuario'> | Date | string;
 	atualizado?: Prisma.DateTimeWithAggregatesFilter<'Usuario'> | Date | string;
 	adminId?: Prisma.IntNullableWithAggregatesFilter<'Usuario'> | number | null;
+	resetToken?:
+		| Prisma.StringNullableWithAggregatesFilter<'Usuario'>
+		| string
+		| null;
+	resetTokenExpira?:
+		| Prisma.DateTimeNullableWithAggregatesFilter<'Usuario'>
+		| Date
+		| string
+		| null;
 };
 
 export type UsuarioCreateInput = {
@@ -391,6 +430,8 @@ export type UsuarioCreateInput = {
 	role?: $Enums.Role;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
 	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
 	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
@@ -410,6 +451,8 @@ export type UsuarioUncheckedCreateInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	adminId?: number | null;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
 	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
@@ -426,6 +469,12 @@ export type UsuarioUpdateInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
 	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
 	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
@@ -445,6 +494,12 @@ export type UsuarioUncheckedUpdateInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
 	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
@@ -463,6 +518,8 @@ export type UsuarioCreateManyInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	adminId?: number | null;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 };
 
 export type UsuarioUpdateManyMutationInput = {
@@ -475,6 +532,12 @@ export type UsuarioUpdateManyMutationInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 };
 
 export type UsuarioUncheckedUpdateManyInput = {
@@ -489,6 +552,12 @@ export type UsuarioUncheckedUpdateManyInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 };
 
 export type UsuarioNullableScalarRelationFilter = {
@@ -518,6 +587,8 @@ export type UsuarioCountOrderByAggregateInput = {
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
 	adminId?: Prisma.SortOrder;
+	resetToken?: Prisma.SortOrder;
+	resetTokenExpira?: Prisma.SortOrder;
 };
 
 export type UsuarioAvgOrderByAggregateInput = {
@@ -537,6 +608,8 @@ export type UsuarioMaxOrderByAggregateInput = {
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
 	adminId?: Prisma.SortOrder;
+	resetToken?: Prisma.SortOrder;
+	resetTokenExpira?: Prisma.SortOrder;
 };
 
 export type UsuarioMinOrderByAggregateInput = {
@@ -551,6 +624,8 @@ export type UsuarioMinOrderByAggregateInput = {
 	criado?: Prisma.SortOrder;
 	atualizado?: Prisma.SortOrder;
 	adminId?: Prisma.SortOrder;
+	resetToken?: Prisma.SortOrder;
+	resetTokenExpira?: Prisma.SortOrder;
 };
 
 export type UsuarioSumOrderByAggregateInput = {
@@ -616,6 +691,10 @@ export type EnumRoleFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
 	set?: Date | string;
+};
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+	set?: Date | string | null;
 };
 
 export type UsuarioUpdateOneWithoutMembrosNestedInput = {
@@ -805,6 +884,8 @@ export type UsuarioCreateWithoutMembrosInput = {
 	role?: $Enums.Role;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
 	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
 	categoriasCriadas?: Prisma.CategoriaCreateNestedManyWithoutAdminInput;
@@ -823,6 +904,8 @@ export type UsuarioUncheckedCreateWithoutMembrosInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	adminId?: number | null;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutUsuarioInput;
@@ -846,6 +929,8 @@ export type UsuarioCreateWithoutAdminInput = {
 	role?: $Enums.Role;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
 	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
 	categoriasCriadas?: Prisma.CategoriaCreateNestedManyWithoutAdminInput;
@@ -863,6 +948,8 @@ export type UsuarioUncheckedCreateWithoutAdminInput = {
 	role?: $Enums.Role;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
 	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
@@ -914,6 +1001,12 @@ export type UsuarioUpdateWithoutMembrosInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
 	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
 	categoriasCriadas?: Prisma.CategoriaUpdateManyWithoutAdminNestedInput;
@@ -932,6 +1025,12 @@ export type UsuarioUncheckedUpdateWithoutMembrosInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioNestedInput;
@@ -980,6 +1079,12 @@ export type UsuarioScalarWhereInput = {
 	criado?: Prisma.DateTimeFilter<'Usuario'> | Date | string;
 	atualizado?: Prisma.DateTimeFilter<'Usuario'> | Date | string;
 	adminId?: Prisma.IntNullableFilter<'Usuario'> | number | null;
+	resetToken?: Prisma.StringNullableFilter<'Usuario'> | string | null;
+	resetTokenExpira?:
+		| Prisma.DateTimeNullableFilter<'Usuario'>
+		| Date
+		| string
+		| null;
 };
 
 export type UsuarioCreateWithoutCategoriasCriadasInput = {
@@ -992,6 +1097,8 @@ export type UsuarioCreateWithoutCategoriasCriadasInput = {
 	role?: $Enums.Role;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
 	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
 	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
@@ -1010,6 +1117,8 @@ export type UsuarioUncheckedCreateWithoutCategoriasCriadasInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	adminId?: number | null;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
 	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutUsuarioInput;
@@ -1053,6 +1162,12 @@ export type UsuarioUpdateWithoutCategoriasCriadasInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
 	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
 	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
@@ -1071,6 +1186,12 @@ export type UsuarioUncheckedUpdateWithoutCategoriasCriadasInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
 	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioNestedInput;
@@ -1086,6 +1207,8 @@ export type UsuarioCreateWithoutProdutosCriadosInput = {
 	role?: $Enums.Role;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
 	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
 	categoriasCriadas?: Prisma.CategoriaCreateNestedManyWithoutAdminInput;
@@ -1104,6 +1227,8 @@ export type UsuarioUncheckedCreateWithoutProdutosCriadosInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	adminId?: number | null;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedCreateNestedManyWithoutUsuarioInput;
@@ -1147,6 +1272,12 @@ export type UsuarioUpdateWithoutProdutosCriadosInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
 	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
 	categoriasCriadas?: Prisma.CategoriaUpdateManyWithoutAdminNestedInput;
@@ -1165,6 +1296,12 @@ export type UsuarioUncheckedUpdateWithoutProdutosCriadosInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
 	movimentacoes?: Prisma.MovimentacaoEstoqueUncheckedUpdateManyWithoutUsuarioNestedInput;
@@ -1180,6 +1317,8 @@ export type UsuarioCreateWithoutMovimentacoesInput = {
 	role?: $Enums.Role;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	admin?: Prisma.UsuarioCreateNestedOneWithoutMembrosInput;
 	membros?: Prisma.UsuarioCreateNestedManyWithoutAdminInput;
 	produtosCriados?: Prisma.ProdutoCreateNestedManyWithoutAdminInput;
@@ -1198,6 +1337,8 @@ export type UsuarioUncheckedCreateWithoutMovimentacoesInput = {
 	criado?: Date | string;
 	atualizado?: Date | string;
 	adminId?: number | null;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 	membros?: Prisma.UsuarioUncheckedCreateNestedManyWithoutAdminInput;
 	produtosCriados?: Prisma.ProdutoUncheckedCreateNestedManyWithoutAdminInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedCreateNestedManyWithoutAdminInput;
@@ -1241,6 +1382,12 @@ export type UsuarioUpdateWithoutMovimentacoesInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	admin?: Prisma.UsuarioUpdateOneWithoutMembrosNestedInput;
 	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
 	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
@@ -1259,6 +1406,12 @@ export type UsuarioUncheckedUpdateWithoutMovimentacoesInput = {
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	adminId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
 	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
@@ -1275,6 +1428,8 @@ export type UsuarioCreateManyAdminInput = {
 	role?: $Enums.Role;
 	criado?: Date | string;
 	atualizado?: Date | string;
+	resetToken?: string | null;
+	resetTokenExpira?: Date | string | null;
 };
 
 export type UsuarioUpdateWithoutAdminInput = {
@@ -1287,6 +1442,12 @@ export type UsuarioUpdateWithoutAdminInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	membros?: Prisma.UsuarioUpdateManyWithoutAdminNestedInput;
 	produtosCriados?: Prisma.ProdutoUpdateManyWithoutAdminNestedInput;
 	categoriasCriadas?: Prisma.CategoriaUpdateManyWithoutAdminNestedInput;
@@ -1304,6 +1465,12 @@ export type UsuarioUncheckedUpdateWithoutAdminInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 	membros?: Prisma.UsuarioUncheckedUpdateManyWithoutAdminNestedInput;
 	produtosCriados?: Prisma.ProdutoUncheckedUpdateManyWithoutAdminNestedInput;
 	categoriasCriadas?: Prisma.CategoriaUncheckedUpdateManyWithoutAdminNestedInput;
@@ -1321,6 +1488,12 @@ export type UsuarioUncheckedUpdateManyWithoutAdminInput = {
 	role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 	atualizado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+	resetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+	resetTokenExpira?:
+		| Prisma.NullableDateTimeFieldUpdateOperationsInput
+		| Date
+		| string
+		| null;
 };
 
 /**
@@ -1415,6 +1588,8 @@ export type UsuarioSelect<
 		criado?: boolean;
 		atualizado?: boolean;
 		adminId?: boolean;
+		resetToken?: boolean;
+		resetTokenExpira?: boolean;
 		admin?: boolean | Prisma.Usuario$adminArgs<ExtArgs>;
 		membros?: boolean | Prisma.Usuario$membrosArgs<ExtArgs>;
 		produtosCriados?: boolean | Prisma.Usuario$produtosCriadosArgs<ExtArgs>;
@@ -1441,6 +1616,8 @@ export type UsuarioSelectCreateManyAndReturn<
 		criado?: boolean;
 		atualizado?: boolean;
 		adminId?: boolean;
+		resetToken?: boolean;
+		resetTokenExpira?: boolean;
 		admin?: boolean | Prisma.Usuario$adminArgs<ExtArgs>;
 	},
 	ExtArgs['result']['usuario']
@@ -1462,6 +1639,8 @@ export type UsuarioSelectUpdateManyAndReturn<
 		criado?: boolean;
 		atualizado?: boolean;
 		adminId?: boolean;
+		resetToken?: boolean;
+		resetTokenExpira?: boolean;
 		admin?: boolean | Prisma.Usuario$adminArgs<ExtArgs>;
 	},
 	ExtArgs['result']['usuario']
@@ -1479,6 +1658,8 @@ export type UsuarioSelectScalar = {
 	criado?: boolean;
 	atualizado?: boolean;
 	adminId?: boolean;
+	resetToken?: boolean;
+	resetTokenExpira?: boolean;
 };
 
 export type UsuarioOmit<
@@ -1495,7 +1676,9 @@ export type UsuarioOmit<
 	| 'role'
 	| 'criado'
 	| 'atualizado'
-	| 'adminId',
+	| 'adminId'
+	| 'resetToken'
+	| 'resetTokenExpira',
 	ExtArgs['result']['usuario']
 >;
 export type UsuarioInclude<
@@ -1547,6 +1730,8 @@ export type $UsuarioPayload<
 			criado: Date;
 			atualizado: Date;
 			adminId: number | null;
+			resetToken: string | null;
+			resetTokenExpira: Date | null;
 		},
 		ExtArgs['result']['usuario']
 	>;
@@ -2209,6 +2394,8 @@ export interface UsuarioFieldRefs {
 	readonly criado: Prisma.FieldRef<'Usuario', 'DateTime'>;
 	readonly atualizado: Prisma.FieldRef<'Usuario', 'DateTime'>;
 	readonly adminId: Prisma.FieldRef<'Usuario', 'Int'>;
+	readonly resetToken: Prisma.FieldRef<'Usuario', 'String'>;
+	readonly resetTokenExpira: Prisma.FieldRef<'Usuario', 'DateTime'>;
 }
 
 // Custom InputTypes

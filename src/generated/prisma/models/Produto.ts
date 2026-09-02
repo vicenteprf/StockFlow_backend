@@ -284,10 +284,12 @@ export type ProdutoOrderByWithRelationInput = {
 export type ProdutoWhereUniqueInput = Prisma.AtLeast<
 	{
 		id?: number;
-		codigo?: number;
+		codigo_adminId?: Prisma.ProdutoCodigoAdminIdCompoundUniqueInput;
+		nome_adminId?: Prisma.ProdutoNomeAdminIdCompoundUniqueInput;
 		AND?: Prisma.ProdutoWhereInput | Prisma.ProdutoWhereInput[];
 		OR?: Prisma.ProdutoWhereInput[];
 		NOT?: Prisma.ProdutoWhereInput | Prisma.ProdutoWhereInput[];
+		codigo?: Prisma.IntFilter<'Produto'> | number;
 		nome?: Prisma.StringFilter<'Produto'> | string;
 		descricao?: Prisma.StringNullableFilter<'Produto'> | string | null;
 		adminId?: Prisma.IntFilter<'Produto'> | number;
@@ -304,7 +306,7 @@ export type ProdutoWhereUniqueInput = Prisma.AtLeast<
 		>;
 		movimentacoes?: Prisma.MovimentacaoEstoqueListRelationFilter;
 	},
-	'id' | 'codigo'
+	'id' | 'codigo_adminId' | 'nome_adminId'
 >;
 
 export type ProdutoOrderByWithAggregationInput = {
@@ -345,7 +347,7 @@ export type ProdutoScalarWhereWithAggregatesInput = {
 };
 
 export type ProdutoCreateInput = {
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	criado?: Date | string;
@@ -357,7 +359,7 @@ export type ProdutoCreateInput = {
 
 export type ProdutoUncheckedCreateInput = {
 	id?: number;
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	adminId: number;
@@ -368,6 +370,7 @@ export type ProdutoUncheckedCreateInput = {
 };
 
 export type ProdutoUpdateInput = {
+	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -391,7 +394,7 @@ export type ProdutoUncheckedUpdateInput = {
 
 export type ProdutoCreateManyInput = {
 	id?: number;
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	adminId: number;
@@ -401,6 +404,7 @@ export type ProdutoCreateManyInput = {
 };
 
 export type ProdutoUpdateManyMutationInput = {
+	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -426,6 +430,16 @@ export type ProdutoListRelationFilter = {
 
 export type ProdutoOrderByRelationAggregateInput = {
 	_count?: Prisma.SortOrder;
+};
+
+export type ProdutoCodigoAdminIdCompoundUniqueInput = {
+	codigo: number;
+	adminId: number;
+};
+
+export type ProdutoNomeAdminIdCompoundUniqueInput = {
+	nome: string;
+	adminId: number;
 };
 
 export type ProdutoCountOrderByAggregateInput = {
@@ -695,7 +709,7 @@ export type ProdutoUpdateOneRequiredWithoutMovimentacoesNestedInput = {
 };
 
 export type ProdutoCreateWithoutAdminInput = {
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	criado?: Date | string;
@@ -706,7 +720,7 @@ export type ProdutoCreateWithoutAdminInput = {
 
 export type ProdutoUncheckedCreateWithoutAdminInput = {
 	id?: number;
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	categoriaId: number;
@@ -773,7 +787,7 @@ export type ProdutoScalarWhereInput = {
 };
 
 export type ProdutoCreateWithoutCategoriaInput = {
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	criado?: Date | string;
@@ -784,7 +798,7 @@ export type ProdutoCreateWithoutCategoriaInput = {
 
 export type ProdutoUncheckedCreateWithoutCategoriaInput = {
 	id?: number;
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	adminId: number;
@@ -837,7 +851,7 @@ export type ProdutoUpdateManyWithWhereWithoutCategoriaInput = {
 };
 
 export type ProdutoCreateWithoutMovimentacoesInput = {
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	criado?: Date | string;
@@ -848,7 +862,7 @@ export type ProdutoCreateWithoutMovimentacoesInput = {
 
 export type ProdutoUncheckedCreateWithoutMovimentacoesInput = {
 	id?: number;
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	adminId: number;
@@ -886,6 +900,7 @@ export type ProdutoUpdateToOneWithWhereWithoutMovimentacoesInput = {
 };
 
 export type ProdutoUpdateWithoutMovimentacoesInput = {
+	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -907,7 +922,7 @@ export type ProdutoUncheckedUpdateWithoutMovimentacoesInput = {
 
 export type ProdutoCreateManyAdminInput = {
 	id?: number;
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	categoriaId: number;
@@ -916,6 +931,7 @@ export type ProdutoCreateManyAdminInput = {
 };
 
 export type ProdutoUpdateWithoutAdminInput = {
+	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -947,7 +963,7 @@ export type ProdutoUncheckedUpdateManyWithoutAdminInput = {
 
 export type ProdutoCreateManyCategoriaInput = {
 	id?: number;
-	codigo?: number;
+	codigo: number;
 	nome: string;
 	descricao?: string | null;
 	adminId: number;
@@ -956,6 +972,7 @@ export type ProdutoCreateManyCategoriaInput = {
 };
 
 export type ProdutoUpdateWithoutCategoriaInput = {
+	codigo?: Prisma.IntFieldUpdateOperationsInput | number;
 	nome?: Prisma.StringFieldUpdateOperationsInput | string;
 	descricao?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 	criado?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
