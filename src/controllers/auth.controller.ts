@@ -58,3 +58,24 @@ export function googleCallback(
 		},
 	)(req, res, next);
 }
+
+export async function esqueceuSenha(req: Request, res: Response) {
+	const { email } = req.body;
+
+	await LoginService.esqueceuSenha(email);
+
+	return res.status(200).json({
+		message:
+			'Se o e-mail estiver cadastrado, você receberá um link para redefinir sua senha.',
+	});
+}
+
+export async function redefinirSenha(req: Request, res: Response) {
+	const { token, senha } = req.body;
+
+	await LoginService.redefinirSenha(token, senha);
+
+	return res
+		.status(200)
+		.json({ message: 'Sua senha foi redefinida com sucesso!' });
+}
