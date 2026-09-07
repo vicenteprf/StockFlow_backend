@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 import { NotFoundError } from '../errors/index.ts';
 import {
+	criarMovimentacaoLoteService,
 	criarMovimentacaoService,
 	findAllMovimentacoes,
 } from '../services/movimentacao.service.ts';
@@ -39,4 +40,25 @@ export async function getMovimentacoes(req: Request, res: Response) {
 	);
 
 	return res.status(200).json(movimentacoes);
+}
+
+export async function movimentacaoEntradaLote(req: Request, res: Response) {
+	const usuarioLogadoId = Number(req.id);
+
+	if (!usuarioLogadoId) {
+		throw new NotFoundError('Usuário não autenticado.');
+	}
+
+	const resultado = await criarMovimentacaoLoteService(
+		{
+			...req.body,
+			usuarioId: usuarioLogadoId,
+		},
+		usuarioLogadoId,
+	);
+
+	return res.status(201).json({
+		mensagem: 'Entrada realizada com sucesso.',
+		dados: resultado,
+	});
 }
