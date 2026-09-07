@@ -1,4 +1,3 @@
-// src/schemas/movimentacao.schema.ts
 import { z } from 'zod';
 
 export const registrarMovimentacaoSchema = z.object({
