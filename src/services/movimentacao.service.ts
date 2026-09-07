@@ -1,10 +1,16 @@
-import { includes } from 'zod';
 import { prisma } from '../data/cliente.Prisma.ts';
 import { NotFoundError, UnprocessableEntityError } from '../errors/index.ts';
-import type { RegistrarMovimentacaoBody } from '../schemas/movimentacao.schema.ts';
+import type {
+	EntradaDeProdutosBody,
+	RegistrarMovimentacaoBody,
+} from '../schemas/movimentacao.schema.ts';
 import { getAdminIdBase } from '../utils/equipe.ts';
 
 interface RegistrarMovimentacaoParams extends RegistrarMovimentacaoBody {
+	usuarioId: number;
+}
+
+interface EntradaDeProdutosBodyParams extends EntradaDeProdutosBody {
 	usuarioId: number;
 }
 
@@ -133,4 +139,41 @@ export async function findAllMovimentacoes(
 	});
 
 	return movimentacoes;
+}
+
+export async function criarMovimentacaoLoteService(
+	{ itens, observacao, usuarioId }: EntradaDeProdutosBodyParams,
+	usuarioLogadoId: number,
+) {
+	const adminIdBase = await getAdminIdBase(usuarioLogadoId);
+
+	return await prisma.$transaction(async (tx) => {
+		for (const item of itens) {
+			const produto = await tx.produto.findUnique({
+				where: { id: item.produtoId, adminId: adminIdBase },
+			});
+
+			if (!produto) {
+				throw new NotFoundError(`Produto ID ${item.produtoId} não encontrado.`);
+			}
+		}
+
+		const movimentacoes = [];
+		for (const item of itens) {
+			const mov = await tx.movimentacaoEstoque.create({
+				data: {
+					produtoId: item.produtoId,
+					usuarioId,
+					tipo: 'ENTRADA',
+					quantidade: item.quantidade,
+					preco: item.preco,
+					validade: item.validade,
+					observacao,
+				},
+			});
+			movimentacoes.push(mov);
+		}
+
+		return movimentacoes;
+	});
 }
