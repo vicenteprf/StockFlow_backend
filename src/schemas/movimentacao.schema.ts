@@ -18,7 +18,7 @@ export const registrarMovimentacaoSchema = z.object({
 
 	preco: z
 		.number({ message: 'O preço deve ser um número.' })
-		.positive('O preço dever ser maior que zero.')
+		.positive('O preço deve ser maior que zero.')
 		.optional(),
 
 	validade: z.coerce.date({ message: 'Data de validade inválida.' }).optional(),
@@ -30,3 +30,34 @@ export const registrarMovimentacaoSchema = z.object({
 export type RegistrarMovimentacaoBody = z.infer<
 	typeof registrarMovimentacaoSchema
 >;
+
+export const entradaDeProdutos = z.object({
+	itens: z.array(
+		z.object({
+			produtoId: z
+				.number({ message: 'O ID do produto é obrigatório.' })
+				.int()
+				.positive('O ID do produto e inválido.'),
+
+			quantidade: z
+				.number({ message: 'A quantidade e obrigatória.' })
+				.int('A quantidade deve ser um número inteiro.')
+				.positive('A quantidade deve ser maior que zero.'),
+
+			preco: z
+				.number({ message: 'O preço deve ser um número.' })
+				.positive('O preço deve ser maior que zero.')
+				.optional(),
+
+			validade: z.coerce
+				.date({ message: 'Data de validade inválida.' })
+				.optional(),
+
+			unidade: z.string(),
+		}),
+	),
+
+	observacao: z.string(),
+});
+
+export type EntradaDeProdutosBody = z.infer<typeof entradaDeProdutos>;
