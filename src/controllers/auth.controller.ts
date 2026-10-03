@@ -33,8 +33,23 @@ export function googleCallback(
 		{
 			session: false,
 		},
-		(err: Error | null, user: GoogleAuthUser | false | undefined) => {
-			if (err || !user) {
+		(
+			err: Error | null,
+			user: GoogleAuthUser | false | undefined,
+			info?: any,
+		) => {
+			if (err) {
+				console.error('[google callback]: erro lançado pelo passport', err);
+				return res.status(401).json({
+					error: 'Falha na autenticação com Google.',
+				});
+			}
+
+			if (!user) {
+				console.error(
+					'[google callback]: sem erro, mas nenhum usuário retornado.',
+					info,
+				);
 				return res.status(401).json({
 					error: 'Falha na autenticação com Google.',
 				});
