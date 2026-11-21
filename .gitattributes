@@ -1,0 +1,5 @@
+# Normaliza o final de linha dos arquivos de texto para LF em qualquer sistema,
+# evitando diferenças de CRLF no Windows e mantendo o padrão exigido pelo Biome.
+# text=auto: o Git identifica arquivos de texto e não altera arquivos binários.
+# eol=lf: arquivos de texto ficam com final de linha LF no disco.
+* text=auto eol=lf
