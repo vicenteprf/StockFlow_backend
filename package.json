@@ -8,6 +8,7 @@
 		"dev": "tsx --watch --env-file=.env ./src/server.ts",
 		"check": "biome check ./",
 		"fix": "biome check --write ./",
+		"fix:unsafe": "biome check --write --unsafe ./",
 		"build": "prisma generate && tsc"
 	},
 	"devDependencies": {
