@@ -5,6 +5,7 @@
 	"author": "Vicente Ramos",
 	"type": "module",
 	"scripts": {
+		"start": "node ./src/server.ts",
 		"dev": "tsx --watch --env-file=.env ./src/server.ts",
 		"check": "biome check ./",
 		"fix": "biome check --write ./",
