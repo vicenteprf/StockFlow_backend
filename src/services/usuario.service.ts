@@ -36,7 +36,7 @@ export async function findAllUsuarioDaEquipe(usuarioLogadoId: number) {
 }
 
 export async function findUsuarioById(id: number) {
-	if (isNaN(id)) {
+	if (Number.isNaN(id)) {
 		throw new NotFoundError('ID inválido.');
 	}
 	const usuarioId = await prisma.usuario.findUnique({
@@ -107,7 +107,7 @@ export async function removeUsuario(
 		select: { id: true, role: true },
 	});
 
-	if (!usuarioLogado || usuarioLogado.role !== 'ADMIN') {
+	if (usuarioLogado?.role !== 'ADMIN') {
 		throw new UnauthorizedError(
 			'Apenas administradores podem remover membros da equipe.',
 		);

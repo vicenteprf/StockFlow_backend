@@ -3,7 +3,7 @@ import type { CreateUsuario } from '../schemas/usuario.schema.ts';
 import * as UsuarioService from '../services/usuario.service.ts';
 
 export async function getAllUsuario(req: Request, res: Response) {
-	const usuario = await UsuarioService.findAllUsuarioDaEquipe(req.id!);
+	const usuario = await UsuarioService.findAllUsuarioDaEquipe(Number(req.id));
 
 	res.status(200).json(usuario);
 }

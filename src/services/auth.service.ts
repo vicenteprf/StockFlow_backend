@@ -19,7 +19,7 @@ export async function login(email: string, password: string) {
 		},
 	});
 
-	if (!usuario || !usuario.password) {
+	if (!usuario?.password) {
 		throw new UnauthorizedError('Credenciais inválidas.');
 	}
 
@@ -104,7 +104,7 @@ export async function redefinirSenha(token: string, senha: string) {
 		},
 	});
 
-	if (!usuario || !usuario.resetTokenExpira) {
+	if (!usuario?.resetTokenExpira) {
 		throw new NotFoundError('O link de redefinição é invalido ou expirou.');
 	}
 
