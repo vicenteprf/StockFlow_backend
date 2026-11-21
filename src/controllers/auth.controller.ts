@@ -36,7 +36,7 @@ export function googleCallback(
 		(
 			err: Error | null,
 			user: GoogleAuthUser | false | undefined,
-			info?: any,
+			info?: unknown,
 		) => {
 			if (err) {
 				console.error('[google callback]: erro lançado pelo passport', err);
